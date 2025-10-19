@@ -3,11 +3,6 @@ import React from 'react';
 export const SHAPES = ['square', 'triangle', 'circle', 'cross', 'star', 'diamond', 'hexagon'];
 export const COLORS = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink'];
 
-export const GameState = {
-  PLAYING: 'PLAYING',
-  GAME_OVER: 'GAME_OVER',
-};
-
 export const INITIAL_HAND_SIZE = 4;
 
 export const SHAPE_ICONS = {
