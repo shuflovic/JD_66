@@ -1,22 +1,13 @@
 import React from 'react';
-import { Tile as TileType } from '../types';
 import { SHAPE_ICONS, COLOR_CLASSES } from '../constants';
 
-interface TileProps {
-  tile: TileType | null;
-  onClick?: () => void;
-  isSelected?: boolean;
-  isGhost?: boolean;
-  gridSize: number;
-  isDiscardTarget?: boolean;
-}
-
-const Tile: React.FC<TileProps> = ({ tile, onClick, isSelected = false, isGhost = false, gridSize, isDiscardTarget = false }) => {
+// FIX: Made `onClick` prop optional by setting a default value. This allows the component to be used for non-interactive display (e.g., ghost tiles) without causing a prop validation error.
+const Tile = ({ tile, onClick = null, isSelected = false, isGhost = false, gridSize, isDiscardTarget = false }) => {
   if (!tile) {
     return null;
   }
 
-  const TILE_SIZE_MAP: { [key: number]: { container: string; icon: string } } = {
+  const TILE_SIZE_MAP = {
     5: { container: 'w-16 h-16 md:w-24 md:h-24', icon: 'w-8 h-8 md:w-12 md:h-12' },
     6: { container: 'w-14 h-14 md:w-20 md:h-20', icon: 'w-7 h-7 md:w-10 md:h-10' },
     7: { container: 'w-12 h-12 md:w-16 md:h-16', icon: 'w-6 h-6 md:w-8 md:h-8' },
