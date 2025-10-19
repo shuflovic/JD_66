@@ -1,20 +1,7 @@
 import React from 'react';
-import { Board as BoardType, Tile as TileType } from '../types';
 import Tile from './Tile';
 
-interface BoardProps {
-  board: BoardType;
-  onCellClick: (row: number, col: number) => void;
-  onBoardTileClick: (row: number, col: number) => void;
-  validMoves: { row: number; col: number }[];
-  selectedTile: TileType | null;
-  selectedBoardTile: { row: number; col: number } | null;
-  adjacentCells: { row: number; col: number }[];
-  showHints: boolean;
-  gridSize: number;
-}
-
-const Board: React.FC<BoardProps> = ({ 
+const Board = ({ 
   board, 
   onCellClick,
   onBoardTileClick,
@@ -25,14 +12,14 @@ const Board: React.FC<BoardProps> = ({
   showHints, 
   gridSize,
 }) => {
-  const gridColsMap: { [key: number]: string } = {
+  const gridColsMap = {
     5: 'grid-cols-5',
     6: 'grid-cols-6',
     7: 'grid-cols-7',
   };
   const gridColsClass = gridColsMap[gridSize] || 'grid-cols-5';
 
-  const TILE_SIZE_MAP: { [key: number]: string } = {
+  const TILE_SIZE_MAP = {
     5: 'w-16 h-16 md:w-24 md:h-24',
     6: 'w-14 h-14 md:w-20 md:h-20',
     7: 'w-12 h-12 md:w-16 md:h-16',
