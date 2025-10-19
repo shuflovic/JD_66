@@ -1,10 +1,16 @@
 import React from 'react';
-import { Shape, Color } from './types';
+
+export const SHAPES = ['square', 'triangle', 'circle', 'cross', 'star', 'diamond', 'hexagon'];
+export const COLORS = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pink'];
+
+export const GameState = {
+  PLAYING: 'PLAYING',
+  GAME_OVER: 'GAME_OVER',
+};
 
 export const INITIAL_HAND_SIZE = 4;
 
-// Fix: Replaced JSX.Element with React.ReactElement to resolve the 'Cannot find namespace JSX' error.
-export const SHAPE_ICONS: Record<Shape, React.ReactElement> = {
+export const SHAPE_ICONS = {
   square:   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4z"></path></svg>,
   triangle: <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4L3 20h18z"></path></svg>,
   circle:   <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9"></circle></svg>,
@@ -14,7 +20,7 @@ export const SHAPE_ICONS: Record<Shape, React.ReactElement> = {
   hexagon:  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6L12 2L5 6v12l7 4l7-4V6z"></path></svg>,
 };
 
-export const COLOR_CLASSES: Record<Color, { bg: string; text: string; border: string }> = {
+export const COLOR_CLASSES = {
   red:    { bg: 'bg-red-500',    text: 'text-white', border: 'border-red-700' },
   blue:   { bg: 'bg-blue-500',   text: 'text-white', border: 'border-blue-700' },
   green:  { bg: 'bg-green-500',  text: 'text-white', border: 'border-green-700' },
