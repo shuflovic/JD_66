@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
 
-interface HowToPlayModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
 const content = {
   en: {
     title: 'How to Play',
@@ -23,16 +18,16 @@ const content = {
       'Cieľom hry je umiestniť na plochu čo najviac kociek.',
       'Klikni na kocku v ruke a potom na prázdne miesto na hracej ploche, kam ju chces položiť.',
       <>Kocku môžes položiť iba <span className="font-semibold">vedľa</span> inej kocky. Vedľa, nie diagonálne!</>,
-      <><span className="font-semibold text-red-500">HLAVNÉ PRAVIDLO:</span> V jednom riadku alebo stĺpci sa nemôžu nachádzať dve kocky rovnakej <span className="font-semibold">farby</span> alebo <span className="font-semibold">tvaru.</span> Podobne ako Sudoku.</>,
-      <>Dolu môžeš <span className="font-semibold">zmeniť veľkosť plochy</span>, <span className="font-semibold">zamiešať</span> karty alebo zapnúť <span className="font-semibold">nápovedy</span>.</>
+      <><span className="font-semibold text-red-500">HLAVNÉ PRAVIDLO:</span> V jednom riadku alebo stĺpci sa nemôžu nachádzať dve kocky rovnakej <span className="font-semibold">farby</span> alebo <span className="font-semibold">tvaru. Podobne ako Sudoku.</span>.</>,
+      <>V spodnej časti obrazovky môžete <span className="font-semibold">zmeniť veľkosť</span>, <span className="font-semibold">zamiešať</span> karty alebo zapnúť <span className="font-semibold">nápovedy</span>.</>
     ],
     buttonText: 'Začať hrať!'
   }
 };
 
 
-const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose }) => {
-  const [language, setLanguage] = useState<'en' | 'sk'>('en');
+const HowToPlayModal = ({ isOpen, onClose }) => {
+  const [language, setLanguage] = useState('en');
   
   if (!isOpen) return null;
   
