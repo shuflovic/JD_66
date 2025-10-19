@@ -1,20 +1,10 @@
 import React from 'react';
-import { Tile as TileType } from '../types';
 import Tile from './Tile';
 import { INITIAL_HAND_SIZE } from '../constants';
 
-interface PlayerHandProps {
-  hand: TileType[];
-  onTileClick: (index: number) => void;
-  selectedTileIndex: number | null;
-  gridSize: number;
-  isBoardTileSelected: boolean;
-  onMoveToHand: () => void;
-}
-
-const PlayerHand: React.FC<PlayerHandProps> = ({ hand, onTileClick, selectedTileIndex, gridSize, isBoardTileSelected, onMoveToHand }) => {
+const PlayerHand = ({ hand, onTileClick, selectedTileIndex, gridSize, isBoardTileSelected, onMoveToHand }) => {
   
-  const TILE_SIZE_MAP: { [key: number]: string } = {
+  const TILE_SIZE_MAP = {
     5: 'w-16 h-16 md:w-24 md:h-24',
     6: 'w-14 h-14 md:w-20 md:h-20',
     7: 'w-12 h-12 md:w-16 md:h-16',
