@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
-import { GameState, SHAPES, COLORS, INITIAL_HAND_SIZE } from '../constants';
+import { GameState } from '../types';
+import { SHAPES, COLORS, INITIAL_HAND_SIZE } from '../constants';
 import useLocalStorage from './useLocalStorage';
 
 declare var html2canvas: any;
