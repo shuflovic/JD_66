@@ -1,11 +1,10 @@
-import { useState, useEffect, useCallback, useMemo } from 'react';
-import { GameState } from '../types';
+import { useState, useEffect, useCallback, useMemo, RefObject } from 'react';
+import { GameState, Tile, Board as BoardType, Move } from '../types';
 import { SHAPES, COLORS, INITIAL_HAND_SIZE } from '../constants';
 import useLocalStorage from './useLocalStorage';
+import html2canvas from 'html2canvas';
 
-declare var html2canvas: any;
-
-const shuffleDeck = (deck) => {
+const shuffleDeck = (deck: Tile[]): Tile[] => {
   const shuffled = [...deck];
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -14,35 +13,42 @@ const shuffleDeck = (deck) => {
   return shuffled;
 };
 
-export const useGameLogic = () => {
-  const [gameState, setGameState] = useState(GameState.PLAYING);
-  const [gridSize, setGridSize] = useState(5);
-  const [board, setBoard] = useState([]);
-  const [deck, setDeck] = useState([]);
-  const [playerHand, setPlayerHand] = useState([]);
-  const [selectedTileIndex, setSelectedTileIndex] = useState(null);
-  const [selectedBoardTile, setSelectedBoardTile] = useState(null);
-  const [score, setScore] = useState(0);
-  const [message, setMessage] = useState('Welcome!');
-  const [showHints, setShowHints] = useState(false);
-  const [canShare, setCanShare] = useState(false);
-  const [history, setHistory] = useState([]);
-  const [gameOverDismissed, setGameOverDismissed] = useState(false);
+type HighScores = Record<number, number>;
 
-  const [highScores, setHighScores] = useLocalStorage('town-highScores', { 5: 0, 6: 0, 7: 0 });
-  const [lastScores, setLastScores] = useLocalStorage('town-lastScores', { 5: 0, 6: 0, 7: 0 });
+export const useGameLogic = () => {
+  const [gameState, setGameState] = useState<GameState>(GameState.PLAYING);
+  const [gridSize, setGridSize] = useState<number>(5);
+  const [board, setBoard] = useState<BoardType>([]);
+  const [deck, setDeck] = useState<Tile[]>([]);
+  const [playerHand, setPlayerHand] = useState<Tile[]>([]);
+  const [selectedTileIndex, setSelectedTileIndex] = useState<number | null>(null);
+  const [selectedBoardTile, setSelectedBoardTile] = useState<Move | null>(null);
+  const [score, setScore] = useState<number>(0);
+  const [message, setMessage] = useState<string>('Welcome!');
+  const [showHints, setShowHints] = useState<boolean>(true);
+  const [canShare, setCanShare] = useState<boolean>(false);
+  const [history, setHistory] = useState<any[]>([]);
+  const [gameOverDismissed, setGameOverDismissed] = useState<boolean>(false);
+
+  const [highScores, setHighScores] = useLocalStorage<HighScores>('town-highScores', { 5: 0, 6: 0, 7: 0 });
+  const [lastScores, setLastScores] = useLocalStorage<HighScores>('town-lastScores', { 5: 0, 6: 0, 7: 0 });
 
   useEffect(() => {
     if (navigator.share && typeof navigator.canShare === 'function') {
-        const dummyFile = new File([""], "dummy.png", { type: "image/png" });
-        if (navigator.canShare({ files: [dummyFile] })) {
-            setCanShare(true);
+        try {
+            const dummyFile = new File([""], "dummy.png", { type: "image/png" });
+            if (navigator.canShare({ files: [dummyFile] })) {
+                setCanShare(true);
+            }
+        } catch (error) {
+            console.warn("Could not check navigator.canShare with files", error);
+            setCanShare(!!navigator.share); // Fallback for browsers that support share but not canShare with files
         }
     }
   }, []);
 
-  const generateDeck = useCallback((size) => {
-    const deck = [];
+  const generateDeck = useCallback((size: number): Tile[] => {
+    const deck: Tile[] = [];
     let id = 0;
     const currentColors = COLORS.slice(0, size);
     const currentShapes = SHAPES.slice(0, size);
@@ -54,15 +60,17 @@ export const useGameLogic = () => {
     return deck;
   }, []);
   
-  const handleStartGame = useCallback((size) => {
+  const handleStartGame = useCallback((size: number) => {
     setGridSize(size);
     
     const newDeck = shuffleDeck(generateDeck(size));
-    const newBoard = Array(size).fill(null).map(() => Array(size).fill(null));
+    const newBoard: BoardType = Array(size).fill(null).map(() => Array(size).fill(null));
     
     const firstTile = newDeck.pop();
-    const center = Math.floor(size / 2);
-    newBoard[center][center] = firstTile;
+    if (firstTile) {
+        const center = Math.floor(size / 2);
+        newBoard[center][center] = firstTile;
+    }
 
     setBoard(newBoard);
     setPlayerHand(newDeck.splice(0, INITIAL_HAND_SIZE));
@@ -80,14 +88,16 @@ export const useGameLogic = () => {
     handleStartGame(5);
   }, [handleStartGame]);
 
-  const isValidPlacement = useCallback((tile, r, c, currentBoard) => {
+  const isValidPlacement = useCallback((tile: Tile, r: number, c: number, currentBoard: BoardType): boolean => {
     if (currentBoard.length === 0) return true;
+    // Check row
     for (let i = 0; i < gridSize; i++) {
       const boardTile = currentBoard[r][i];
       if (boardTile && (boardTile.shape === tile.shape || boardTile.color === tile.color)) {
         return false;
       }
     }
+    // Check column
     for (let i = 0; i < gridSize; i++) {
       const boardTile = currentBoard[i][c];
       if (boardTile && (boardTile.shape === tile.shape || boardTile.color === tile.color)) {
@@ -97,10 +107,10 @@ export const useGameLogic = () => {
     return true;
   }, [gridSize]);
 
-  const getAdjacentEmptyCells = useCallback((currentBoard) => {
+  const getAdjacentEmptyCells = useCallback((currentBoard: BoardType): Move[] => {
     if (currentBoard.length === 0) return [];
-    const cells = [];
-    const seen = new Set();
+    const cells: Move[] = [];
+    const seen = new Set<string>();
 
     for (let r = 0; r < gridSize; r++) {
       for (let c = 0; c < gridSize; c++) {
@@ -122,7 +132,7 @@ export const useGameLogic = () => {
     return cells;
   }, [gridSize]);
 
-  const canMakeMove = useCallback((hand, currentBoard) => {
+  const canMakeMove = useCallback((hand: Tile[], currentBoard: BoardType): boolean => {
     if (currentBoard.length === 0) return true;
     const validSpots = getAdjacentEmptyCells(currentBoard);
     for (const tile of hand) {
@@ -147,12 +157,12 @@ export const useGameLogic = () => {
   
   const adjacentCells = useMemo(() => getAdjacentEmptyCells(board), [board, getAdjacentEmptyCells]);
   
-  const isRemovalValid = useCallback((currentBoard, r, c) => {
+  const isRemovalValid = useCallback((currentBoard: BoardType, r: number, c: number): boolean => {
     const tempBoard = currentBoard.map(row => [...row]);
     tempBoard[r][c] = null;
 
     let remainingTilesCount = 0;
-    let startTile = null;
+    let startTile: Move | null = null;
     for (let i = 0; i < gridSize; i++) {
         for (let j = 0; j < gridSize; j++) {
             if (tempBoard[i][j]) {
@@ -170,7 +180,7 @@ export const useGameLogic = () => {
     let count = 0;
 
     while (queue.length > 0) {
-        const { row: currR, col: currC } = queue.shift();
+        const { row: currR, col: currC } = queue.shift()!;
         count++;
         const neighbors = [{r:currR-1,c:currC},{r:currR+1,c:currC},{r:currR,c:currC-1},{r:currR,c:currC+1}];
         for (const n of neighbors) {
@@ -200,7 +210,7 @@ export const useGameLogic = () => {
 
   }, [selectedTile, selectedBoardTile, board, adjacentCells, isValidPlacement, getAdjacentEmptyCells]);
 
-  const handleTileSelect = (index) => {
+  const handleTileSelect = (index: number) => {
     if (selectedBoardTile && playerHand.length >= INITIAL_HAND_SIZE) {
         const tileFromBoard = board[selectedBoardTile.row][selectedBoardTile.col];
         if (!tileFromBoard) return;
@@ -235,7 +245,7 @@ export const useGameLogic = () => {
     }
   };
 
-  const handleBoardTileClick = (r, c) => {
+  const handleBoardTileClick = (r: number, c: number) => {
     if (score <= 1) return;
 
     if (selectedBoardTile && selectedBoardTile.row === r && selectedBoardTile.col === c) {
@@ -257,7 +267,7 @@ export const useGameLogic = () => {
     }
   };
 
-  const handleCellClick = (r, c) => {
+  const handleCellClick = (r: number, c: number) => {
     if (!selectedTile || !validMoves.some(m => m.row === r && m.col === c)) {
         setMessage('Invalid move! No duplicate shape or color in a row or column.');
         return;
@@ -283,7 +293,8 @@ export const useGameLogic = () => {
       const newPlayerHand = playerHand.filter((_, i) => i !== selectedTileIndex);
       const newDeck = [...deck];
       if (newPlayerHand.length < INITIAL_HAND_SIZE && newDeck.length > 0) {
-        newPlayerHand.push(newDeck.pop());
+        const nextTile = newDeck.pop()
+        if (nextTile) newPlayerHand.push(nextTile);
       }
       
       setPlayerHand(newPlayerHand);
@@ -337,7 +348,7 @@ export const useGameLogic = () => {
     setMessage('Hand shuffled.');
   };
   
-  const handleShare = async (boardRef) => {
+  const handleShare = async (boardRef: RefObject<HTMLElement>) => {
     if (!boardRef.current) return;
     setMessage('Generating share image...');
     try {
@@ -371,7 +382,7 @@ export const useGameLogic = () => {
         ctx.fillText(`Town ${gridSize}x${gridSize}`, finalCanvas.width / 2, 100);
         
         ctx.font = '66px sans-serif';
-        ctx.fillText(`i did  ${currentScore}, can you beat me?`, finalCanvas.width / 2, 190);
+        ctx.fillText(`I scored ${currentScore}, can you beat me?`, finalCanvas.width / 2, 190);
 
         ctx.drawImage(boardCanvas, canvasPadding / 2, headerHeight);
 
@@ -384,13 +395,20 @@ export const useGameLogic = () => {
             
             const shareData = {
                 title: `Town ${gridSize}x${gridSize} Score`,
-                text: `https://shuflovic.github.io/town_66`,
-                url: `https://shuflovic.github.io/town_66`,
+                text: `I scored ${currentScore} in Town ${gridSize}x${gridSize}! Can you beat me?`,
                 files: [file],
             };
-
-            await navigator.share(shareData);
-            setMessage('Shared successfully!');
+            
+            if (navigator.canShare && navigator.canShare(shareData)) {
+                await navigator.share(shareData);
+                setMessage('Shared successfully!');
+            } else {
+                 await navigator.share({
+                    title: shareData.title,
+                    text: shareData.text,
+                 });
+                 setMessage('Shared successfully!');
+            }
         }, 'image/png');
     } catch (error) {
         console.error('Error sharing:', error);
@@ -420,7 +438,7 @@ export const useGameLogic = () => {
     setMessage('Game over. Undo your last move to continue playing.');
   };
 
-  const handleSizeChange = (newSize) => {
+  const handleSizeChange = (newSize: number) => {
     if (newSize === gridSize) return;
     if (score > 1 && !window.confirm('This will start a new game. Are you sure?')) return;
     handleStartGame(newSize);
