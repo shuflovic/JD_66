@@ -2,16 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 import { GameState } from './types';
 import Board from './components/Board';
 import PlayerHand from './components/PlayerHand';
-import GameOverModal from './components/GameOverModal';
-import HowToPlayModal from './components/HowToPlayModal';
+import { GameOverModal } from './components/GameOverModal';
+import { HowToPlayModal } from './components/HowToPlayModal';
 import useLocalStorage from './hooks/useLocalStorage';
 import { useGameLogic } from './hooks/useGameLogic';
 
-const App = () => {
+const App: React.FC = () => {
   const [hasSeenTutorial, setHasSeenTutorial] = useLocalStorage('town-seen-tutorial', false);
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
   
-  const boardRef = useRef(null);
+  const boardRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!hasSeenTutorial) {
@@ -20,7 +20,6 @@ const App = () => {
     }
   }, [hasSeenTutorial]);
 
-  // FIX: The useGameLogic hook does not accept any arguments.
   const {
     gameState,
     gridSize,
@@ -92,16 +91,6 @@ const App = () => {
                     <div className="text-sm text-gray-500 dark:text-gray-400">High Score</div>
                     <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{highScores[gridSize] ?? 0}</div>
                 </div>
-                <div className="text-center">
-                    <div className="text-sm text-gray-500 dark:text-gray-400">Score</div>
-                    <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{score}</div>
-                </div>
-                <div className="text-center">
-                    <div className="text-sm text-gray-500 dark:text-gray-400">Deck</div>
-                    <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{deck.length}</div>
-                </div>
-            </div>
-          </div>
       </header>
       
       <div className="w-full flex justify-between items-center gap-4">
@@ -204,3 +193,13 @@ const App = () => {
 };
 
 export default App;
+                <div className="text-center">
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Score</div>
+                    <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{score}</div>
+                </div>
+                <div className="text-center">
+                    <div className="text-sm text-gray-500 dark:text-gray-400">Deck</div>
+                    <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{deck.length}</div>
+                </div>
+            </div>
+          </div>
