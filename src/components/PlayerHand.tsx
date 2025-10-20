@@ -1,54 +1,64 @@
-import React from 'react';
-import Tile from './Tile';
-import { INITIAL_HAND_SIZE } from '../constants';
+import React from "react";
 
-const PlayerHand = ({ hand, onTileClick, selectedTileIndex, gridSize, isBoardTileSelected, onMoveToHand }) => {
-  
-  const TILE_SIZE_MAP = {
-    5: 'w-16 h-16 md:w-24 md:h-24',
-    6: 'w-14 h-14 md:w-20 md:h-20',
-    7: 'w-12 h-12 md:w-16 md:h-16',
+interface Tile {
+  color: string;
+  shape: string;
+}
+
+interface PlayerHandProps {
+  hand: Tile[];
+  onTileClick: (index: number) => void;
+  selectedTileIndex: number | null;
+  gridSize: number;
+  isBoardTileSelected: boolean;
+  onMoveToHand: () => void;
+}
+
+export const PlayerHand: React.FC<PlayerHandProps> = ({
+  hand,
+  onTileClick,
+  selectedTileIndex,
+  gridSize,
+  isBoardTileSelected,
+  onMoveToHand,
+}) => {
+  const gridClass: Record<number, string> = {
+    5: "grid-cols-5",
+    6: "grid-cols-6",
+    7: "grid-cols-7",
   };
-  const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
-  const isHandFull = hand.length >= INITIAL_HAND_SIZE;
-  const isSwapMode = isBoardTileSelected && isHandFull;
-  
+
   return (
-    <div className="p-4 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-lg">
-      <h2 className="text-xl font-bold text-center mb-4 text-gray-700 dark:text-gray-200">Your Hand</h2>
-      <div className="flex justify-center items-center gap-2 md:gap-4 min-h-[88px] md:min-h-[120px]">
-        {hand.length > 0 ? (
-          hand.map((tile, index) => (
-              <Tile
-                key={tile.id}
-                tile={tile}
-                isSelected={!isSwapMode && index === selectedTileIndex}
-                onClick={() => onTileClick(index)}
-                gridSize={gridSize}
-                isDiscardTarget={isSwapMode}
-              />
-            )
-          )
-        ) : !isBoardTileSelected ? (
-          <p className="text-gray-500 dark:text-gray-400">No tiles left!</p>
-        ) : null}
-        
-        {isBoardTileSelected && !isHandFull && (
-          <div 
-            onClick={onMoveToHand} 
-            className={`flex flex-col items-center justify-center rounded-lg shadow-md border-2 border-dashed border-green-500 text-green-500 ${tileSizeClass} cursor-pointer hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors`}
-            title="Return tile to hand"
-            aria-label="Return selected tile to hand"
+    <div className="p-4 bg-gray-800 rounded-xl">
+      <div className={`grid gap-2 ${gridClass[gridSize] || "grid-cols-6"}`}>
+        {hand.map((tile, index) => (
+          <div
+            key={index}
+            onClick={() => onTileClick(index)}
+            className={`p-3 rounded-lg border cursor-pointer transition-transform transform hover:scale-105 ${
+              selectedTileIndex === index
+                ? "border-yellow-400 scale-105"
+                : "border-gray-600"
+            }`}
+            style={{
+              backgroundColor: tile.color,
+            }}
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            <span className="text-xs font-semibold mt-1">To Hand</span>
-         </div>
-        )}
+            <span className="text-gray-100 text-lg font-semibold">
+              {tile.shape}
+            </span>
+          </div>
+        ))}
       </div>
+
+      {isBoardTileSelected && (
+        <button
+          onClick={onMoveToHand}
+          className="mt-3 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+        >
+          Move to Hand
+        </button>
+      )}
     </div>
   );
 };
-
-export default PlayerHand;
