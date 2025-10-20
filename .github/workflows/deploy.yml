@@ -31,7 +31,7 @@ jobs:
           node-version: '18' # Use a stable Node.js version
 
       - name: Install dependencies
-        run: npm ci # Install dependencies from package.json
+        run: npm install # Fallback to npm install if lockfile is missing
 
       - name: Build
         run: npm run build # Run Vite build to generate the dist folder
