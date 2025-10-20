@@ -1,6 +1,16 @@
 import React from 'react';
 
-const GameOverModal = ({ 
+interface GameOverModalProps {
+  score: number;
+  highScore: number;
+  onPlayAgain: () => void;
+  onShare: () => void;
+  canShare: boolean;
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const GameOverModal: React.FC<GameOverModalProps> = ({ 
   score, 
   highScore, 
   onPlayAgain, 
