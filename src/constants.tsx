@@ -5,7 +5,7 @@ export const COLORS = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pi
 
 export const INITIAL_HAND_SIZE = 4;
 
-export const SHAPE_ICONS = {
+export const SHAPE_ICONS: Record<string, React.ReactElement> = {
   square:   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4z"></path></svg>,
   triangle: <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4L3 20h18z"></path></svg>,
   circle:   <svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9"></circle></svg>,
@@ -15,7 +15,7 @@ export const SHAPE_ICONS = {
   hexagon:  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6L12 2L5 6v12l7 4l7-4V6z"></path></svg>,
 };
 
-export const COLOR_CLASSES = {
+export const COLOR_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
   red:    { bg: 'bg-red-500',    text: 'text-white', border: 'border-red-700' },
   blue:   { bg: 'bg-blue-500',   text: 'text-white', border: 'border-blue-700' },
   green:  { bg: 'bg-green-500',  text: 'text-white', border: 'border-green-700' },
