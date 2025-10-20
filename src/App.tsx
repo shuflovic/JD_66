@@ -7,6 +7,11 @@ import HowToPlayModal from './components/HowToPlayModal';
 import useLocalStorage from './hooks/useLocalStorage';
 import { useGameLogic } from './hooks/useGameLogic';
 
+import { Board } from "./components/Board";
+import { PlayerHand } from "./components/PlayerHand";
+import { GameOverModal } from "./components/GameOverModal";
+
+
 const App: React.FC = () => {
   const [hasSeenTutorial, setHasSeenTutorial] = useLocalStorage('town-seen-tutorial', false);
   const [isHowToPlayOpen, setIsHowToPlayOpen] = useState(false);
