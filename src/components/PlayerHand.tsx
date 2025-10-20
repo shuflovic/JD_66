@@ -1,14 +1,9 @@
 import React from "react";
-
-
-
-interface Tile {
-  color: string;
-  shape: string;
-}
+import Tile from "./Tile";
+import { Tile as TileType } from "../types";
 
 interface PlayerHandProps {
-  hand: Tile[];
+  hand: TileType[];
   onTileClick: (index: number) => void;
   selectedTileIndex: number | null;
   gridSize: number;
@@ -30,6 +25,13 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
     7: "grid-cols-7",
   };
 
+  const TILE_SIZE_MAP: Record<number, string> = {
+    5: "w-16 h-16 md:w-24 md:h-24",
+    6: "w-14 h-14 md:w-20 md:h-20",
+    7: "w-12 h-12 md:w-16 md:h-16",
+  };
+  const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
+
   return (
     <div className="p-4 bg-gray-800 rounded-xl">
       <div className={`grid gap-2 ${gridClass[gridSize] || "grid-cols-6"}`}>
@@ -37,18 +39,11 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
           <div
             key={index}
             onClick={() => onTileClick(index)}
-            className={`p-3 rounded-lg border cursor-pointer transition-transform transform hover:scale-105 ${
-              selectedTileIndex === index
-                ? "border-yellow-400 scale-105"
-                : "border-gray-600"
-            }`}
-            style={{
-              backgroundColor: tile.color,
-            }}
+            className={`flex items-center justify-center rounded-md cursor-pointer transition-transform transform hover:scale-105 border ${
+              selectedTileIndex === index ? "border-yellow-400" : "border-gray-600"
+            } ${tileSizeClass}`}
           >
-            <span className="text-gray-100 text-lg font-semibold">
-              {tile.shape}
-            </span>
+            <Tile tile={tile} gridSize={gridSize} />
           </div>
         ))}
       </div>
