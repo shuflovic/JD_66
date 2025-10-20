@@ -1,8 +1,8 @@
 const CACHE_NAME = 'jd66-cache-v4'; // Bumped version to clear old cache
 const urlsToCache = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  './',
+  './index.html',
+  './manifest.json'
   // Vite generates hashed assets, so we can't pre-cache them by name.
   // The SW will cache them on the fly as they are requested.
 ];
