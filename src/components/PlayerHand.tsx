@@ -1,7 +1,5 @@
 import React from "react";
-import { Board } from "./components/Board";
-import { PlayerHand } from "./components/PlayerHand";
-import { GameOverModal } from "./components/GameOverModal";
+
 
 
 interface Tile {
