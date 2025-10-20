@@ -38,17 +38,14 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
         {hand.map((tile, index) => (
           <div
             key={index}
-            onClick={() => onTileClick(index)}
-            className={`flex items-center justify-center rounded-md cursor-pointer transition-transform transform hover:scale-105 border ${
-              selectedTileIndex === index ? "border-yellow-400" : "border-gray-600"
-            } ${tileSizeClass}`}
+            className={`flex items-center justify-center ${tileSizeClass} rounded-md`}
           >
             <Tile
               tile={tile}
               gridSize={gridSize}
-              isSelected={selectedTileIndex === index} // highlight selected tile
-              isGhost={false} // normal hand tile
-              onClick={null} // handled by parent div
+              isSelected={selectedTileIndex === index} // highlight if selected
+              isGhost={false} // hand tiles are normal
+              onClick={() => onTileClick(index)} // hover effect same as board
             />
           </div>
         ))}
