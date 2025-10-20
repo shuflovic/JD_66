@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Tile from './Tile';
 import { Board as BoardType, Tile as TileType, Move } from '../types';
@@ -74,7 +73,7 @@ const Board: React.FC<BoardProps> = ({
                     onClick={() => onBoardTileClick(r, c)}
                   />
                  ) : (selectedTile && isValidMove && showHints) ? (
-                  <Tile tile={selectedTile} isGhost={true} gridSize={gridSize} />
+                  <Tile tile={selectedTile} isGhost={true} gridSize={gridSize} onClick={null} />
                  ) : null}
               </div>
             );
