@@ -4,12 +4,12 @@
   "description": "A single-player puzzle where you place tiles on a 5x5, 6x6, or 7x7 grid. The goal is to place as many tiles as possible without repeating a shape or color in any row or column.",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "icons/icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "icons/icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
