@@ -76,7 +76,7 @@ const App = () => {
       
       <header className="w-full flex justify-between items-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-md">
           <div className="flex items-center gap-6">
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white">Town 66</h1>
+            <h1 className="text-3xl font-bold text-gray-800 dark:text-white">JD 66</h1>
             <button
                 onClick={handleUndo}
                 disabled={history.length === 0 || gameState !== GameState.PLAYING}
