@@ -43,7 +43,13 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
               selectedTileIndex === index ? "border-yellow-400" : "border-gray-600"
             } ${tileSizeClass}`}
           >
-            <Tile tile={tile} gridSize={gridSize} />
+            <Tile
+              tile={tile}
+              gridSize={gridSize}
+              isSelected={selectedTileIndex === index} // highlight selected tile
+              isGhost={false} // normal hand tile
+              onClick={null} // handled by parent div
+            />
           </div>
         ))}
       </div>
