@@ -132,7 +132,7 @@ const App: React.FC = () => {
 
       <main ref={boardRef} className="flex-grow flex items-center justify-center">
         {board.length > 0 && (
-          <div className="shadow-2xl p-1 bg-gradient-to-br from-amber-900 via-amber-800 to-amber-950">
+          <div className="shadow-2xl p-1 bg-amber-950 border-2 border-amber-950 rounded-md">
             <Board 
               board={board} 
               onCellClick={handleCellClick} 
