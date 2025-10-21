@@ -44,7 +44,7 @@ const Tile: React.FC<TileProps> = ({
       className={`flex items-center justify-center rounded-lg shadow-md border-2 ${sizes.container} ${colorClass.bg} ${colorClass.border} ${selectedClasses} ${discardClasses} ${ghostClasses} ${clickableClasses}`}
       onClick={onClick || undefined}
     >
-      <div className={`${sizes.icon} ${colorClass.text}`}>
+      <div className={`flex items-center justify-center ${sizes.icon} ${colorClass.text}`}>
         {shapeIcon}
       </div>
     </div>
