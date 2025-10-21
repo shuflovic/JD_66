@@ -73,7 +73,7 @@ const App: React.FC = () => {
         onClose={handleCloseGameOverModal}
       />
       
-      <header className="w-full flex justify-between items-center text-amber-300 p-4 bg-amber-950 rounded-lg shadow-2xl border-2 border-amber-700">
+      <header className="w-full flex justify-between items-center text-amber-300 p-4 bg-amber-950 rounded-lg shadow-2xl">
         <div className="flex items-center gap-6">
           <h1 className="text-4xl font-bold text-amber-100 font-serif tracking-wide">JD 66</h1>
           <div className="flex items-center space-x-4 border-l-2 border-r-2 border-amber-700 px-6">
@@ -160,7 +160,7 @@ const App: React.FC = () => {
           isBoardTileSelected={!!selectedBoardTile}
           onMoveToHand={handleMoveToHand}
         />
-        <div className="w-full max-w-lg flex justify-around items-center p-4 bg-amber-950 rounded-lg shadow-xl border-2 border-amber-700">
+        <div className="w-full max-w-lg flex justify-around items-center p-4 bg-amber-950 rounded-lg shadow-xl">
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-amber-400 font-serif hidden sm:inline uppercase tracking-widest">Board Size:</span>
             <div className="flex items-center bg-amber-900 rounded-lg p-1 border border-amber-700">
