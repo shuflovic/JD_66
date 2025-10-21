@@ -75,11 +75,11 @@ const App: React.FC = () => {
       
       <header className="w-full flex justify-between items-center text-amber-300 p-4 bg-beige-200 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.3)] border-2 border-amber-300">
         <div className="flex items-center gap-6">
-          <h1 className="text-3xl font-bold text-amber-900 font-serif">JD 66</h1>
-          <div className="flex items-center space-x-4 border-l-2 border-r-2 border-amber-700 px-6">
+          <h1 className="text-3xl font-bold text-amber-300 font-serif">JD 66</h1>
+          <div className="flex items-center space-x-4 border-l-2 border-r-2 border-amber-300 px-6">
             <div className="text-center">
-              <div className="text-sm text-amber-800 font-serif">High Score</div>
-              <div className="text-2xl font-bold text-amber-900 font-serif">{highScores[gridSize] ?? 0}</div>
+              <div className="text-sm text-amber-300 font-serif">High Score</div>
+              <div className="text-2xl font-bold text-amber-300 font-serif">{highScores[gridSize] ?? 0}</div>
             </div>
             <div className="text-center">
               <div className="text-sm text-amber-800 font-serif">Score</div>
