@@ -38,7 +38,7 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
       <div className="text-amber-400 text-sm font-serif uppercase tracking-widest mb-3">
         Your Hand
       </div>
-      <div className={`grid gap-2 ${gridClass[gridSize] || "grid-cols-6"}`}>
+      <div className={`grid gap-2 grid-cols-4`}>
         {hand.map((tile, index) => (
           <div
             key={index}
