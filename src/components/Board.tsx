@@ -42,7 +42,7 @@ const Board: React.FC<BoardProps> = ({
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-    <div className="p-4 bg-gradient-to-br from-amber-200 to-yellow-100 rounded-lg shadow-inner border-2 border-amber-300">
+    <div className="p-2 bg-amber-950 rounded-lg shadow-xl border-2 border-amber-700">
       <div className={`grid ${gridColsClass} gap-0`}>
         {board.map((row, r) =>
           row.map((tile, c) => {
@@ -54,18 +54,15 @@ const Board: React.FC<BoardProps> = ({
             const isDarkSquare = (r + c) % 2 === 1;
 
             const getCellClasses = () => {
-              if (isPlaced) return isDarkSquare ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-gradient-to-br from-amber-200 to-yellow-100';
-              if (!selectedTile) return isDarkSquare ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-gradient-to-br from-amber-200 to-yellow-100';
-              if (!isClickablePlacement && !isValidMove) return isDarkSquare ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-gradient-to-br from-amber-200 to-yellow-100';
-              if (showHints && isValidMove) return 'bg-gradient-to-br from-green-400 to-green-500 cursor-pointer shadow-md';
-              if (isClickablePlacement) return 'bg-gradient-to-br from-amber-400 to-amber-500 cursor-pointer hover:from-amber-350 hover:to-amber-450 shadow-md';
-              return isDarkSquare ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-gradient-to-br from-amber-200 to-yellow-100';
+              if (showHints && isValidMove) return 'bg-green-400 cursor-pointer';
+              if (isClickablePlacement) return 'bg-amber-400 cursor-pointer hover:bg-amber-300';
+              return isDarkSquare ? 'bg-amber-900' : 'bg-amber-100';
             };
 
             return (
               <div
                 key={`${r}-${c}`}
-                className={`flex items-center justify-center transition-all ${tileSizeClass} ${getCellClasses()} border border-amber-800 ${isSelectedOnBoard ? 'ring-4 ring-amber-400' : ''}`}
+                className={`flex items-center justify-center transition-all ${tileSizeClass} ${getCellClasses()} border border-amber-950 ${isSelectedOnBoard ? 'ring-4 ring-amber-300' : ''}`}
                 onClick={() => !isPlaced && (isClickablePlacement || isValidMove) ? onCellClick(r, c) : undefined}
               >
                 {isPlaced ? (
