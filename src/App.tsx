@@ -132,7 +132,7 @@ const App: React.FC = () => {
 
       <main ref={boardRef} className="flex-grow flex items-center justify-center">
         {board.length > 0 && (
-          <div className="shadow-2xl border-2 border-amber-700 p-2" style={{background: 'linear-gradient(135deg, #78350f 0%, #92400e 50%, #78350f 100%)'}}>
+          <div className="shadow-2xl border-2 border-amber-700 p-2 bg-gradient-to-br from-amber-900 via-amber-800 to-amber-950">
             <Board 
               board={board} 
               onCellClick={handleCellClick} 
