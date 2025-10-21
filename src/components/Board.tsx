@@ -30,6 +30,7 @@ const Board: React.FC<BoardProps> = ({
     6: 'grid-cols-6',
     7: 'grid-cols-7',
   };
+
   const gridColsClass = gridColsMap[gridSize] || 'grid-cols-5';
 
   const TILE_SIZE_MAP: Record<number, string> = {
@@ -37,11 +38,12 @@ const Board: React.FC<BoardProps> = ({
     6: 'w-14 h-14 md:w-20 md:h-20',
     7: 'w-12 h-12 md:w-16 md:h-16',
   };
+
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-    <div className="p-4 bg-brown-200 dark:bg-brown-800 rounded-xl shadow-inner">
-      <div className={`grid ${gridColsClass} gap-1`}>
+    <div className="p-4 bg-gradient-to-br from-amber-200 to-yellow-100 rounded-lg shadow-inner border-2 border-amber-300">
+      <div className={`grid ${gridColsClass} gap-0`}>
         {board.map((row, r) =>
           row.map((tile, c) => {
             const isPlaced = !!tile;
@@ -49,20 +51,21 @@ const Board: React.FC<BoardProps> = ({
             const isValidMove = validMoves.some(move => move.row === r && move.col === c);
             const isClickablePlacement = selectedTile && (isAdjacent || !!selectedBoardTile);
             const isSelectedOnBoard = selectedBoardTile?.row === r && selectedBoardTile?.col === c;
+            const isDarkSquare = (r + c) % 2 === 1;
 
             const getCellClasses = () => {
-              if (isPlaced) return 'bg-transparent';
-              if (!selectedTile) return 'bg-gray-300 dark:bg-gray-700';
-              if (!isClickablePlacement && !isValidMove) return 'bg-gray-300 dark:bg-gray-700';
-              if (showHints && isValidMove) return 'bg-green-300 dark:bg-green-700 cursor-pointer';
-              if (isClickablePlacement) return 'bg-gray-400 dark:bg-gray-600 cursor-pointer hover:bg-gray-500 dark:hover:bg-gray-500';
-              return 'bg-gray-300 dark:bg-gray-700';
+              if (isPlaced) return isDarkSquare ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-gradient-to-br from-amber-200 to-yellow-100';
+              if (!selectedTile) return isDarkSquare ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-gradient-to-br from-amber-200 to-yellow-100';
+              if (!isClickablePlacement && !isValidMove) return isDarkSquare ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-gradient-to-br from-amber-200 to-yellow-100';
+              if (showHints && isValidMove) return 'bg-gradient-to-br from-green-400 to-green-500 cursor-pointer shadow-md';
+              if (isClickablePlacement) return 'bg-gradient-to-br from-amber-400 to-amber-500 cursor-pointer hover:from-amber-350 hover:to-amber-450 shadow-md';
+              return isDarkSquare ? 'bg-gradient-to-br from-amber-900 to-amber-950' : 'bg-gradient-to-br from-amber-200 to-yellow-100';
             };
 
             return (
               <div
                 key={`${r}-${c}`}
-                className={`flex items-center justify-center rounded-md transition-colors ${tileSizeClass} ${getCellClasses()}`}
+                className={`flex items-center justify-center transition-all ${tileSizeClass} ${getCellClasses()} border border-amber-800 ${isSelectedOnBoard ? 'ring-4 ring-amber-400' : ''}`}
                 onClick={() => !isPlaced && (isClickablePlacement || isValidMove) ? onCellClick(r, c) : undefined}
               >
                 {isPlaced ? (
@@ -72,9 +75,9 @@ const Board: React.FC<BoardProps> = ({
                     isSelected={isSelectedOnBoard}
                     onClick={() => onBoardTileClick(r, c)}
                   />
-                 ) : (selectedTile && isValidMove && showHints) ? (
+                ) : (selectedTile && isValidMove && showHints) ? (
                   <Tile tile={selectedTile} isGhost={true} gridSize={gridSize} onClick={null} />
-                 ) : null}
+                ) : null}
               </div>
             );
           })
