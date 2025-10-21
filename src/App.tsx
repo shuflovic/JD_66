@@ -58,7 +58,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[url('https://www.textures.com/system/gallery/photos/Wood/Wood%20Planks/139481/WoodPlanksClean0086_1_S.jpg')] bg-cover bg-center flex flex-col items-center justify-between p-4 space-y-4">
+    <div className="min-h-screen bg-amber-700 flex flex-col items-center justify-between p-4 space-y-4">
       <HowToPlayModal 
         isOpen={isHowToPlayOpen}
         onClose={handleCloseHowToPlayModal}
@@ -73,7 +73,7 @@ const App: React.FC = () => {
         onClose={handleCloseGameOverModal}
       />
       
-      <header className="w-full flex justify-between items-center p-4 bg-[url('https://www.textures.com/system/gallery/photos/Paper/Parchment/134818/Parchment0008_1_S.jpg')] bg-cover bg-center rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.3)] border-2 border-amber-800">
+      <header className="w-full flex justify-between items-center p-4 bg-beige-200 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.3)] border-2 border-amber-800">
         <div className="flex items-center gap-6">
           <h1 className="text-3xl font-bold text-amber-900 font-serif">JD 66</h1>
           <div className="flex items-center space-x-4 border-l-2 border-r-2 border-amber-700 px-6">
@@ -108,12 +108,12 @@ const App: React.FC = () => {
           <button
             onClick={() => setIsHowToPlayOpen(true)}
             aria-label="How to play"
-            className="flex items-center gap-2 py-2 px-4 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.3)] transition-colors text-amber-900 bg-[url('https://www.textures.com/system/gallery/photos/Paper/Parchment/134818/Parchment0008_1_S.jpg')] bg-cover bg-center hover:bg-amber-100 border-2 border-amber-800 font-serif"
+            className="flex items-center gap-2 py-2 px-4 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.3)] transition-colors text-amber-900 bg-beige-200 hover:bg-amber-100 border-2 border-amber-800 font-serif"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
             </svg>
-            <span className="font-semibold font-serif">How to Play</span>
+            <span className="font-semibold">How to Play</span>
           </button>
         ) : (
           <div /> 
@@ -121,12 +121,12 @@ const App: React.FC = () => {
         <button
           onClick={() => handleStartGame(gridSize)}
           aria-label="Start a new game"
-          className="flex items-center gap-2 py-2 px-4 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.3)] transition-colors text-amber-900 bg-[url('https://www.textures.com/system/gallery/photos/Paper/Parchment/134818/Parchment0008_1_S.jpg')] bg-cover bg-center hover:bg-amber-100 border-2 border-amber-800 font-serif"
+          className="flex items-center gap-2 py-2 px-4 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.3)] transition-colors text-amber-900 bg-beige-200 hover:bg-amber-100 border-2 border-amber-800 font-serif"
         >
           <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 110 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
           </svg>
-          <span className="font-semibold font-serif">New Game</span>
+          <span className="font-semibold">New Game</span>
         </button>
       </div>
 
@@ -158,7 +158,7 @@ const App: React.FC = () => {
           isBoardTileSelected={!!selectedBoardTile}
           onMoveToHand={handleMoveToHand}
         />
-        <div className="w-full max-w-lg flex justify-around items-center p-2 bg-[url('https://www.textures.com/system/gallery/photos/Paper/Parchment/134818/Parchment0008_1_S.jpg')] bg-cover bg-center rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.3)] border-2 border-amber-800">
+        <div className="w-full max-w-lg flex justify-around items-center p-2 bg-beige-200 rounded-lg shadow-[0_4px_6px_rgba(0,0,0,0.3)] border-2 border-amber-800">
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-amber-800 font-serif hidden sm:inline">Board Size:</span>
             <div className="flex items-center bg-amber-200 rounded-lg p-1">
