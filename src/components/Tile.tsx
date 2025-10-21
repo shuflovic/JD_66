@@ -41,7 +41,7 @@ const Tile: React.FC<TileProps> = ({
 
   return (
     <div 
-      className={`flex items-center justify-center rounded-lg shadow-md border-8 ${sizes.container} ${colorClass.bg} ${colorClass.border} ${selectedClasses} ${discardClasses} ${ghostClasses} ${clickableClasses}`}
+      className={`flex items-center justify-center rounded-lg shadow-md border-1 ${sizes.container} ${colorClass.bg} ${colorClass.border} ${selectedClasses} ${discardClasses} ${ghostClasses} ${clickableClasses}`}
       onClick={onClick || undefined}
     >
       <div className={`flex items-center justify-center ${sizes.icon} ${colorClass.text}`}>
