@@ -18,28 +18,45 @@ self.addEventListener('install', event => {
 });
 
 self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;
-        }
-        const fetchRequest = event.request.clone();
-        return fetch(fetchRequest).then(networkResponse => {
-          if (!networkResponse || networkResponse.status !== 200 || (networkResponse.type !== 'basic' && networkResponse.type !== 'cors')) {
-            return networkResponse;
-          }
-          const responseToCache = networkResponse.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              if (event.request.method === 'GET') {
-                cache.put(event.request, responseToCache);
-              }
+  const url = new URL(event.request.url);
+  
+  // Network-first for CSS, JS, and HTML - always try fresh
+  if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || url.pathname.endsWith('.html')) {
+    event.respondWith(
+      fetch(event.request)
+        .then(response => {
+          if (response && response.status === 200) {
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, response.clone());
             });
-          return networkResponse;
-        });
-      })
-  );
+          }
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+  } else {
+    // Cache-first for other assets
+    event.respondWith(
+      caches.match(event.request)
+        .then(response => {
+          if (response) {
+            return response;
+          }
+          return fetch(event.request).then(networkResponse => {
+            if (!networkResponse || networkResponse.status !== 200) {
+              return networkResponse;
+            }
+            caches.open(CACHE_NAME)
+              .then(cache => {
+                if (event.request.method === 'GET') {
+                  cache.put(event.request, networkResponse.clone());
+                }
+              });
+            return networkResponse;
+          });
+        })
+    );
+  }
 });
 
 self.addEventListener('activate', event => {
