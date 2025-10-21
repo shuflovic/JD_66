@@ -40,7 +40,7 @@ const Board: React.FC<BoardProps> = ({
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-    <div className="p-4 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-inner">
+    <div className="p-4 bg-brown-200 dark:bg-brown-800 rounded-xl shadow-inner">
       <div className={`grid ${gridColsClass} gap-1`}>
         {board.map((row, r) =>
           row.map((tile, c) => {
