@@ -34,7 +34,7 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-    <div className="p-4 bg-amber-950 rounded-lg shadow-xl border-4 border-amber-700">
+    <div className="p-4 bg-amber-950 rounded-lg shadow-xl border-2 border-amber-700">
       <div className="text-amber-400 text-sm font-serif uppercase tracking-widest mb-3">
         Your Hand
       </div>
