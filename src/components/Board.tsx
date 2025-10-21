@@ -62,7 +62,7 @@ const Board: React.FC<BoardProps> = ({
             return (
               <div
                 key={`${r}-${c}`}
-                className={`flex items-center justify-center transition-all ${tileSizeClass} ${getCellClasses()} border-2 border-amber-950 ${isSelectedOnBoard ? 'ring-4 ring-amber-300' : ''}`}
+                className={`flex items-center justify-center transition-all ${tileSizeClass} ${getCellClasses()} rounded-lg border-2 border-amber-950 ${isSelectedOnBoard ? 'ring-4 ring-amber-300' : ''}`}
                 onClick={() => !isPlaced && (isClickablePlacement || isValidMove) ? onCellClick(r, c) : undefined}
               >
                 {isPlaced ? (
