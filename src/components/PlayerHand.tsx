@@ -30,10 +30,14 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
     6: "w-14 h-14 md:w-20 md:h-20",
     7: "w-12 h-12 md:w-16 md:h-16",
   };
+
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-    <div className="p-4 bg-gray-800 rounded-xl">
+    <div className="p-4 bg-amber-950 rounded-lg shadow-xl border-4 border-amber-700">
+      <div className="text-amber-400 text-sm font-serif uppercase tracking-widest mb-3">
+        Your Hand
+      </div>
       <div className={`grid gap-2 ${gridClass[gridSize] || "grid-cols-6"}`}>
         {hand.map((tile, index) => (
           <div
@@ -43,18 +47,17 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
             <Tile
               tile={tile}
               gridSize={gridSize}
-              isSelected={selectedTileIndex === index} // highlight if selected
-              isGhost={false} // hand tiles are normal
-              onClick={() => onTileClick(index)} // hover effect same as board
+              isSelected={selectedTileIndex === index}
+              isGhost={false}
+              onClick={() => onTileClick(index)}
             />
           </div>
         ))}
       </div>
-
       {isBoardTileSelected && (
         <button
           onClick={onMoveToHand}
-          className="mt-3 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"
+          className="mt-3 w-full bg-gradient-to-br from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-amber-50 font-serif font-bold py-2 rounded-lg border-2 border-amber-900 shadow-lg transition-all active:scale-95"
         >
           Move to Hand
         </button>
