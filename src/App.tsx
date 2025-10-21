@@ -149,7 +149,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="w-full flex flex-col items-center space-y-2">
-        <div className="h-10 text-center font-semibold text-lg text-amber-100 font-serif transition-opacity flex items-center justify-center">
+        <div className="min-h-10 text-center font-semibold text-lg text-amber-100 font-serif transition-opacity flex items-center justify-center">
           {message}
         </div>
         <PlayerHand 
