@@ -56,7 +56,7 @@ const Board: React.FC<BoardProps> = ({
             const getCellClasses = () => {
               if (showHints && isValidMove) return 'bg-green-400 cursor-pointer';
               if (isClickablePlacement) return 'bg-amber-400 cursor-pointer hover:bg-amber-300';
-              return isDarkSquare ? 'bg-amber-900' : 'bg-amber-100';
+              return 'bg-amber-100';
             };
 
             return (
