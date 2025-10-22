@@ -74,7 +74,7 @@ const App: React.FC = () => {
         onClose={handleCloseGameOverModal}
       />
       
-      <header className="w-full flex justify-between items-center text-amber-300 p-4 style={{backgroundImage: 'url(./icons/background_picture.jpg)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}} rounded-lg shadow-2xl">
+      <header className="w-full flex justify-between items-center text-amber-300 p-4 style={{backgroundImage: 'url(./icons/background_picture2.jpg)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}} rounded-lg shadow-2xl">
         <div className="flex items-center gap-6">
           <h1 className="text-4xl font-bold text-amber-100 font-serif tracking-wide">JD 66</h1>
           <div className="flex items-center space-x-4 border-l-2 border-r-2 border-amber-700 px-6">
