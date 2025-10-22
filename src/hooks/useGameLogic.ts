@@ -75,7 +75,7 @@ export const useGameLogic = () => {
     setBoard(newBoard);
     setPlayerHand(newDeck.splice(0, INITIAL_HAND_SIZE));
     setDeck(newDeck);
-    setMessage('Place a tile adjacent to an existing one.');
+    setMessage('Choose a tile and place it next to an existing one.');
     setScore(1);
     setSelectedTileIndex(null);
     setSelectedBoardTile(null);
@@ -250,7 +250,7 @@ export const useGameLogic = () => {
 
     if (selectedBoardTile && selectedBoardTile.row === r && selectedBoardTile.col === c) {
         setSelectedBoardTile(null);
-        setMessage('Select a tile from your hand.');
+        setMessage('Choose a tile.');
         return;
     }
     
@@ -300,7 +300,7 @@ export const useGameLogic = () => {
       setPlayerHand(newPlayerHand);
       setDeck(newDeck);
       setSelectedTileIndex(null);
-      setMessage('Nice move! Place your next tile.');
+      setMessage('Nice move! Choose your next tile.');
     }
   };
   
