@@ -59,7 +59,7 @@ const App: React.FC = () => {
 
   return (
   
-    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4" style={{backgroundImage: 'url(/icons/background_picture.jpg)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}}>  
+    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4" style={{backgroundImage: 'url(./icons/background_picture.jpg)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}}>  
       <HowToPlayModal 
         isOpen={isHowToPlayOpen}
         onClose={handleCloseHowToPlayModal}
