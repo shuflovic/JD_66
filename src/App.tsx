@@ -58,7 +58,8 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-900 via-amber-800 to-amber-950 flex flex-col items-center justify-between p-4 space-y-4">
+  
+    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4" style={{backgroundImage: 'url(/icons/background_picture.jpg)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}}>  
       <HowToPlayModal 
         isOpen={isHowToPlayOpen}
         onClose={handleCloseHowToPlayModal}
