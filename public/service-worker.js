@@ -1,10 +1,10 @@
 const CACHE_NAME = 'jd66-cache-v5';
 const urlsToCache = [
-  '/JD_66/',
-  '/JD_66/index.html',
-  '/JD_66/manifest.json',
-  '/JD_66/icons/icon-192.png',
-  '/JD_66/icons/icon-512.png'
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png'
 ];
 
 self.addEventListener('install', event => {
@@ -20,7 +20,7 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   
-  // Network-first for CSS, JS, and HTML - always try fresh
+  // Network-first for CSS, JS, and HTML
   if (url.pathname.endsWith('.css') || url.pathname.endsWith('.js') || url.pathname.endsWith('.html')) {
     event.respondWith(
       fetch(event.request)
@@ -42,18 +42,20 @@ self.addEventListener('fetch', event => {
           if (response) {
             return response;
           }
-          return fetch(event.request).then(networkResponse => {
-            if (!networkResponse || networkResponse.status !== 200) {
+          return fetch(event.request)
+            .then(networkResponse => {
+              if (!networkResponse || networkResponse.status !== 200) {
+                return networkResponse;
+              }
+              caches.open(CACHE_NAME)
+                .then(cache => {
+                  if (event.request.method === 'GET') {
+                    cache.put(event.request, networkResponse.clone());
+                  }
+                });
               return networkResponse;
-            }
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                if (event.request.method === 'GET') {
-                  cache.put(event.request, networkResponse.clone());
-                }
-              });
-            return networkResponse;
-          });
+            })
+            .catch(() => caches.match(event.request));
         })
     );
   }
