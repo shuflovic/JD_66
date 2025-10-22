@@ -37,7 +37,7 @@ const Tile: React.FC<TileProps> = ({
   const selectedClasses = isSelected ? 'ring-4 ring-offset-2 ring-cyan-400 dark:ring-offset-gray-800' : '';
   const discardClasses = isDiscardTarget ? 'ring-4 ring-offset-2 ring-red-500 dark:ring-offset-gray-800 animate-pulse' : '';
   const ghostClasses = isGhost ? 'opacity-50' : '';
-  const clickableClasses = onClick ? 'cursor-pointer hover:scale-102 transition-transform' : '';
+  const clickableClasses = onClick ? 'cursor-pointer hover:scale-101 transition-transform' : '';
 
   return (
     <div 
