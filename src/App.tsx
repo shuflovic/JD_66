@@ -74,12 +74,12 @@ const App: React.FC = () => {
         onClose={handleCloseGameOverModal}
       />
       
-      <header className="w-full flex justify-between items-center text-amber-300 p-4 rounded-lg shadow-2xl">
-        <div className="flex items-center gap-6" style={{backgroundImage: 'url(./icons/background_picture2.jpg)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}}>
-          <h1 className="text-4xl font-bold text-amber-100 font-serif tracking-wide">JD 66</h1>
+      <header className="w-full flex border-amber-700 border-2 rounded-md justify-between items-center text-amber-300 p-4 rounded-lg shadow-2xl">
+        <div className="flex items-center gap-6" style={{backgroundImage: 'url(./icons/background_picture3.jpg)', backgroundSize: 'cover', backgroundAttachment: 'fixed'}}>
+          <h1 className="text-4xl font-bold text-amber-100 font-serif p-2 tracking-wide">JD 66</h1>
           <div className="flex items-center space-x-4 border-l-2 border-r-2 border-amber-700 px-6">
             <div className="text-center">
-              <div className="text-sm text-amber-400 font-serif uppercase tracking-widest">High Score</div>
+              <div className="text-sm text-amber-600 font-serif uppercase tracking-widest">High Score</div>
               <div className="text-2xl font-bold text-amber-100 font-serif">{highScores[gridSize] ?? 0}</div>
             </div>
             <div className="text-center">
