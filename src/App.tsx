@@ -95,7 +95,7 @@ const App: React.FC = () => {
             onClick={handleUndo}
             disabled={history.length === 0 || gameState !== GameState.PLAYING}
             aria-label="Undo last move"
-            className="text-amber-400 hover:text-amber-200 disabled:text-amber-500 transition-colors disabled:cursor-not-allowed"
+            className="text-amber-400 hover:text-amber-200 p-2 disabled:text-amber-500 transition-colors disabled:cursor-not-allowed"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -161,7 +161,7 @@ const App: React.FC = () => {
           isBoardTileSelected={!!selectedBoardTile}
           onMoveToHand={handleMoveToHand}
         />
-        <div className="w-full max-w-lg flex justify-around items-center p-4 bg-amber-950 rounded-lg shadow-xl">
+        <div className="w-full max-w-lg flex justify-around items-center p-4 rounded-lg shadow-xl">
           <div className="flex items-center gap-2">
             <span className="text-sm font-medium text-amber-400 font-serif hidden sm:inline uppercase tracking-widest">Board Size:</span>
             <div className="flex items-center bg-amber-900 rounded-lg p-1 border border-amber-700">
