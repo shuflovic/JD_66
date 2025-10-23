@@ -38,7 +38,7 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
 
   return (
     // Outer container styled to look like a dark wooden tray
-    <div className="p-4 bg-yellow-950 rounded-xl shadow-inner shadow-black/50 border-4 border-yellow-800">
+    <div className="p-4 bg-amber-950 rounded-xl shadow-[inset_0_2px_6px_rgba(0,0,0,0.4)] border-4 border-amber-900">
 
       {/* Tile Container: uses flex for cleaner wrapping/spacing */}
       <div className="flex flex-wrap justify-center gap-3 md:gap-4 p-2">
