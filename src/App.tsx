@@ -75,8 +75,8 @@ const App: React.FC = () => {
       />
       
       {/* CHANGE 2: Updated Header classes for a dark, framed look with subtle transparency */}
-      <header className="w-full flex border-amber-900 border-4 rounded-xl justify-between items-center text-amber-300 p-4 shadow-[0_6px_12px_rgba(0,0,0,0.4)] bg-amber-700/80">
-        <div className="flex items-center gap-6">
+      <header className="w-full flex flex-col sm:flex-row border-amber-900 border-3 rounded-xl justify-between items-center text-amber-300 p-3 shadow-[0_6px_12px_rgba(0,0,0,0.4)] bg-amber-700/80">
+        <div className="flex items-center gap-6 w-full sm:w-auto">
           <h1 className="text-4xl font-extrabold text-stone-100 font-serif p-2 tracking-widest text-shadow-lg">JD 66</h1>
           <div className="flex items-center space-x-4 border-l-2 border-r-2 border-stone-900 px-6">
             <div className="text-center">
@@ -92,12 +92,11 @@ const App: React.FC = () => {
               <div className="text-2xl font-bold text-stone-100 font-serif">{deck.length}</div>
             </div>
           </div>
-          {/* CHANGE 3: Undo Button colors for contrast and subtle background */}
           <button
             onClick={handleUndo}
             disabled={history.length === 0 || gameState !== GameState.PLAYING}
             aria-label="Undo last move"
-            className="text-amber-300 hover:text-amber-100 p-2 disabled:text-stone-500 transition-colors disabled:cursor-not-allowed bg-stone-900/50 rounded-full"
+            className="text-amber-300 hover:text-amber-100 p-2 disabled:text-stone-500 transition-colors disabled:cursor-not-allowed bg-stone-900/50 rounded-full mt-2 sm:mt-0"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
