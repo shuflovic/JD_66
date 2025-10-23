@@ -59,7 +59,7 @@ const App: React.FC = () => {
 
   return (
     // CHANGE 1: Main container uses a dark stone/wood background color
-    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4 bg-stone-800"> 
+    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4 bg-amber-800/90 border-8 border-amber-900 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]"> 
       <HowToPlayModal 
         isOpen={isHowToPlayOpen}
         onClose={handleCloseHowToPlayModal}
