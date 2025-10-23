@@ -67,7 +67,7 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
                      rounded-lg 
                      border-2 border-yellow-950 
                      shadow-2xl 
-                     transition-all duration-150 
+                     transition-all duration-50 
                      active:scale-[0.98] 
                      tracking-wider uppercase"
         >
