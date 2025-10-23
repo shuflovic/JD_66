@@ -34,14 +34,28 @@ const Tile: React.FC<TileProps> = ({
   const colorClass = COLOR_CLASSES[tile.color];
   const shapeIcon = SHAPE_ICONS[tile.shape];
   
+  // Custom classes for the wooden tile look
+  const woodenBaseClasses = 'bg-amber-100 border-2 border-amber-300 shadow-lg';
+  const interactionClasses = onClick ? 'cursor-pointer hover:shadow-xl active:scale-[0.98] transition-all duration-100 ease-out' : '';
+    
+  // Ring classes are based on your provided logic
   const selectedClasses = isSelected ? 'ring-4 ring-offset-2 ring-cyan-400 dark:ring-offset-gray-800' : '';
   const discardClasses = isDiscardTarget ? 'ring-4 ring-offset-2 ring-red-500 dark:ring-offset-gray-800 animate-pulse' : '';
   const ghostClasses = isGhost ? 'opacity-50' : '';
-  const clickableClasses = onClick ? 'cursor-pointer hover:scale-101 transition-transform' : '';
+  
+  // Replaced the original generic classes with the custom wooden/interaction classes
+  const combinedClasses = [
+    woodenBaseClasses, 
+    selectedClasses, 
+    discardClasses, 
+    ghostClasses, 
+    interactionClasses
+  ].join(' ');
 
   return (
     <div 
-      className={`flex items-center justify-center rounded-lg shadow-md border-1 ${sizes.container} ${colorClass.bg} ${colorClass.border} ${selectedClasses} ${discardClasses} ${ghostClasses} ${clickableClasses}`}
+      // Merged classes to achieve the new wooden style
+      className={`flex items-center justify-center rounded-lg ${sizes.container} ${combinedClasses}`}
       onClick={onClick || undefined}
     >
       <div className={`flex items-center justify-center ${sizes.icon} ${colorClass.text}`}>
