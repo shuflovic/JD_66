@@ -151,9 +151,9 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer className="w-full flex flex-col items-center space-y-2 p-2 bg-amber-700/80 border-3 border-amber-950 rounded-xl shadow-[inset_0_4px_8px_rgba(0,0,0,0.3)]">
+      <footer className="w-full flex flex-col items-center space-y-2 p-2">
         {/* CHANGE 7: Message color update */}
-        <div className="min-h-10 text-center font-semibold text-lg text-amber-300 font-serif transition-opacity flex items-center justify-center">
+        <div className="min-h-10 text-center font-semibold text-lg text-amber-200 font-serif transition-opacity flex items-center justify-center">
           {message}
         </div>
         <PlayerHand 
@@ -165,7 +165,7 @@ const App: React.FC = () => {
           onMoveToHand={handleMoveToHand}
         />
         {/* CHANGE 8: Footer controls container styling (dark frame) */}
-        <div className="w-full max-w-lg flex justify-around items-center p-4 rounded-xl shadow-xl bg-stone-700/70 backdrop-blur-sm border-2 border-stone-900">
+        <div className="w-full max-w-lg flex justify-around items-center p-4 rounded-xl shadow-xl bg-amber-700/80 backdrop-blur-sm border-3 border-amber-900">
           <div className="flex items-center gap-2">
             {/* CHANGE 9: Text color update */}
             <span className="text-sm font-medium text-amber-300 font-serif hidden sm:inline uppercase tracking-widest">Board Size:</span>
