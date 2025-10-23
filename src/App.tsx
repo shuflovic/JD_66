@@ -75,7 +75,7 @@ const App: React.FC = () => {
       />
       
       {/* CHANGE 2: Updated Header classes for a dark, framed look with subtle transparency */}
-      <header className="w-full flex border-stone-900 border-4 rounded-xl justify-between items-center text-amber-300 p-4 shadow-xl bg-stone-700/70 backdrop-blur-sm">
+      <header className="w-full flex border-amber-900 border-4 rounded-xl justify-between items-center text-amber-300 p-4 shadow-[0_6px_12px_rgba(0,0,0,0.4)] bg-amber-700/80">
         <div className="flex items-center gap-6">
           <h1 className="text-4xl font-extrabold text-stone-100 font-serif p-2 tracking-widest text-shadow-lg">JD 66</h1>
           <div className="flex items-center space-x-4 border-l-2 border-r-2 border-stone-900 px-6">
@@ -156,7 +156,7 @@ const App: React.FC = () => {
 
       <footer className="w-full flex flex-col items-center space-y-2">
         {/* CHANGE 7: Message color update */}
-        <div className="min-h-10 text-center font-semibold text-lg text-amber-300 font-serif transition-opacity flex items-center justify-center">
+        <footer className="w-full flex flex-col items-center space-y-2 p-4 bg-amber-900/80 border-4 border-amber-950 rounded-xl shadow-[inset_0_4px_8px_rgba(0,0,0,0.3)]">
           {message}
         </div>
         <PlayerHand 
