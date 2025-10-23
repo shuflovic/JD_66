@@ -34,8 +34,9 @@ const Tile: React.FC<TileProps> = ({
   const colorClass = COLOR_CLASSES[tile.color];
   const shapeIcon = SHAPE_ICONS[tile.shape];
   
-  // Custom classes for the wooden tile look
-  const woodenBaseClasses = 'bg-amber-100 border-2 border-amber-300 shadow-lg';
+  // FIXED: Using a pale yellow/amber base (like natural wood) with a dark border 
+  // to ensure the shape colors are the focal point.
+  const woodenBaseClasses = 'bg-yellow-100 border-2 border-yellow-900 shadow-md';
   const interactionClasses = onClick ? 'cursor-pointer hover:shadow-xl active:scale-[0.98] transition-all duration-100 ease-out' : '';
     
   // Ring classes are based on your provided logic
@@ -58,6 +59,7 @@ const Tile: React.FC<TileProps> = ({
       className={`flex items-center justify-center rounded-lg ${sizes.container} ${combinedClasses}`}
       onClick={onClick || undefined}
     >
+      {/* The colorClass.text applies the vibrant color to the shape icon */}
       <div className={`flex items-center justify-center ${sizes.icon} ${colorClass.text}`}>
         {shapeIcon}
       </div>
