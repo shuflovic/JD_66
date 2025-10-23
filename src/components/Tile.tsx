@@ -54,11 +54,7 @@ const Tile: React.FC<TileProps> = ({
   ].join(' ');
 
   return (
-    <div 
-      // This will now apply the vibrant color (e.g., bg-red-500) and the new depth styles
-      className={`flex items-center justify-center rounded-lg ${sizes.container} ${combinedClasses}`}
-      onClick={onClick || undefined}
-    >
+    <div className={`flex items-center justify-center rounded-lg ${sizes.container} ${combinedClasses} shadow-[4px_4px_8px_rgba(0,0,0,0.5),inset_2px_2px_4px_rgba(255,255,255,0.2)] border-[3px]`}>
       <div className={`flex items-center justify-center ${sizes.icon} ${colorClass.text}`}>
         {shapeIcon}
       </div>
