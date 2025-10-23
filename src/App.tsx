@@ -154,9 +154,9 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer className="w-full flex flex-col items-center space-y-2">
+      <footer className="w-full flex flex-col items-center space-y-2 p-4 bg-amber-900/80 border-4 border-amber-950 rounded-xl shadow-[inset_0_4px_8px_rgba(0,0,0,0.3)]">
         {/* CHANGE 7: Message color update */}
-        <footer className="w-full flex flex-col items-center space-y-2 p-4 bg-amber-900/80 border-4 border-amber-950 rounded-xl shadow-[inset_0_4px_8px_rgba(0,0,0,0.3)]">
+        <div className="min-h-10 text-center font-semibold text-lg text-amber-300 font-serif transition-opacity flex items-center justify-center">
           {message}
         </div>
         <PlayerHand 
