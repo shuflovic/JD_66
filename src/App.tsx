@@ -154,7 +154,7 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer className="w-full flex flex-col items-center space-y-2 p-4 bg-amber-900/80 border-4 border-amber-950 rounded-xl shadow-[inset_0_4px_8px_rgba(0,0,0,0.3)]">
+      <footer className="w-full flex flex-col items-center space-y-2 p-2 bg-amber-900/80 border-3 border-amber-950 rounded-xl shadow-[inset_0_4px_8px_rgba(0,0,0,0.3)]">
         {/* CHANGE 7: Message color update */}
         <div className="min-h-10 text-center font-semibold text-lg text-amber-300 font-serif transition-opacity flex items-center justify-center">
           {message}
@@ -195,7 +195,7 @@ const App: React.FC = () => {
             onClick={handleShuffle}
             disabled={deck.length < playerHand.length || gameState !== GameState.PLAYING}
             aria-label="Shuffle hand"
-            className="flex items-center gap-2 p-2 rounded-lg transition-colors text-amber-300 hover:text-stone-100 disabled:text-stone-500 disabled:cursor-not-allowed font-serif bg-stone-900/50 hover:bg-stone-800/50"
+            className="flex items-center gap-2 p-2 rounded-lg transition-colors text-amber-300 hover:text-stone-100 disabled:text-stone-500 disabled:cursor-not-allowed font-serif"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
