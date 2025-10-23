@@ -19,6 +19,9 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
   isBoardTileSelected,
   onMoveToHand,
 }) => {
+  // NOTE: gridClass and TILE_SIZE_MAP are defined but not used here,
+  // as the size is controlled by the outer div and the Tile component itself.
+  // Keeping them here to match the provided code structure.
   const gridClass: Record<number, string> = {
     5: "grid-cols-5",
     6: "grid-cols-6",
@@ -34,13 +37,16 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-    <div className="p-4 shadow-xl">
+    // Outer container styled to look like a dark wooden tray
+    <div className="p-4 bg-yellow-950 rounded-xl shadow-inner shadow-black/50 border-4 border-yellow-800">
 
-      <div className={`grid gap-2 grid-cols-4`}>
+      {/* Tile Container: uses flex for cleaner wrapping/spacing */}
+      <div className="flex flex-wrap justify-center gap-3 md:gap-4 p-2">
         {hand.map((tile, index) => (
           <div
             key={index}
-            className={`flex items-center justify-center ${tileSizeClass} rounded-md`}
+            // Removed fixed size class here as Tile handles it, kept flex layout
+            className="flex items-center justify-center rounded-md transition-transform duration-100 ease-out hover:scale-105"
           >
             <Tile
               tile={tile}
@@ -52,10 +58,22 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
           </div>
         ))}
       </div>
+
       {isBoardTileSelected && (
         <button
           onClick={onMoveToHand}
-          className="mt-3 w-full bg-gradient-to-br from-amber-600 to-amber-700 hover:from-amber-500 hover:to-amber-600 text-amber-50 font-serif font-bold py-2 rounded-lg border-2 border-amber-900 shadow-lg transition-all active:scale-95"
+          // Button styled for a deep, rich wood/gold effect
+          className="mt-4 w-full 
+                     bg-gradient-to-br from-yellow-700 to-yellow-900 
+                     hover:from-yellow-600 hover:to-yellow-800 
+                     text-yellow-100 
+                     font-sans font-bold py-3 px-6 
+                     rounded-lg 
+                     border-2 border-yellow-950 
+                     shadow-2xl 
+                     transition-all duration-150 
+                     active:scale-[0.98] 
+                     tracking-wider uppercase"
         >
           Move to Hand
         </button>
