@@ -34,16 +34,14 @@ const Tile: React.FC<TileProps> = ({
   const colorClass = COLOR_CLASSES[tile.color];
   const shapeIcon = SHAPE_ICONS[tile.shape];
   
-  // FIX: Reverted to using your color classes for BG/Border, but adding
-  // a strong inner shadow to mimic the depth/gloss of a wooden block.
-  const styledBaseClasses = `border-4 shadow-xl shadow-black/50 ${colorClass.bg} ${colorClass.border}`;
-
-  const interactionClasses = onClick ? 'cursor-pointer hover:scale-105 active:scale-[0.98] transition-all duration-100 ease-out' : '';
+  const styledBaseClasses = `border-4 shadow-lg shadow-black/30 ${colorClass.bg} ${colorClass.border} rounded-lg`;
+ 
+  const interactionClasses = onClick ? 'cursor-pointer hover:scale-105 active:scale-95 transition-all duration-150 ease-out' : '';
     
   // Ring classes
-  const selectedClasses = isSelected ? 'ring-4 ring-offset-2 ring-cyan-400 dark:ring-offset-gray-800' : '';
-  const discardClasses = isDiscardTarget ? 'ring-4 ring-offset-2 ring-red-500 dark:ring-offset-gray-800 animate-pulse' : '';
-  const ghostClasses = isGhost ? 'opacity-50' : '';
+  const selectedClasses = isSelected ? 'ring-4 ring-amber-400 ring-offset-2 ring-offset-amber-900' : '';
+  const discardClasses = isDiscardTarget ? 'ring-4 ring-red-400 ring-offset-2 ring-offset-amber-900 animate-pulse' : '';
+  const ghostClasses = isGhost ? 'opacity-60' : '';
   
   const combinedClasses = [
     styledBaseClasses, 
@@ -54,7 +52,10 @@ const Tile: React.FC<TileProps> = ({
   ].join(' ');
 
   return (
-    <div className={`flex items-center justify-center rounded-lg ${sizes.container} ${combinedClasses} shadow-[4px_4px_8px_rgba(0,0,0,0.5),inset_2px_2px_4px_rgba(255,255,255,0.2)] border-[3px]`}>
+    <div 
+      className={`flex items-center justify-center ${sizes.container} ${combinedClasses}`}
+      onClick={onClick}
+    >
       <div className={`flex items-center justify-center ${sizes.icon} ${colorClass.text}`}>
         {shapeIcon}
       </div>
