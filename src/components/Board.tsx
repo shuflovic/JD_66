@@ -42,7 +42,8 @@ const Board: React.FC<BoardProps> = ({
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-    <div className="p-1 bg-amber-950 rounded-lg shadow-xl">
+    // Outer container changed to dark wood background with a pronounced border and shadow
+    <div className="p-3 bg-yellow-900/90 rounded-xl shadow-2xl border-4 border-yellow-800/80">
       <div className={`grid ${gridColsClass} gap-0`}>
         {board.map((row, r) =>
           row.map((tile, c) => {
@@ -54,15 +55,21 @@ const Board: React.FC<BoardProps> = ({
             const isDarkSquare = (r + c) % 2 === 1;
 
             const getCellClasses = () => {
-              if (showHints && isValidMove) return 'bg-green-400 cursor-pointer';
-              if (isClickablePlacement) return 'bg-amber-400 cursor-pointer hover:bg-amber-300';
-              return 'bg-amber-100';
+              // HINT/VALID MOVE: Use a vibrant lime green highlight for hints
+              if (showHints && isValidMove) return 'bg-lime-600/50 cursor-pointer hover:bg-lime-600/70';
+              
+              // CLICKABLE PLACEMENT: Use a soft amber highlight for placement zones
+              if (isClickablePlacement) return 'bg-amber-500/50 cursor-pointer hover:bg-amber-400/70';
+              
+              // DEFAULT EMPTY CELL: Use alternating dark green/brown shades for an old board look
+              return isDarkSquare ? 'bg-green-900/50' : 'bg-green-800/50';
             };
 
             return (
               <div
                 key={`${r}-${c}`}
-                className={`flex items-center justify-center transition-all ${tileSizeClass} ${getCellClasses()} rounded-lg border-2 border-amber-950 ${isSelectedOnBoard ? 'ring-4 ring-amber-300' : ''}`}
+                // Changed border color to dark green/brown for separation
+                className={`flex items-center justify-center transition-all ${tileSizeClass} ${getCellClasses()} rounded-lg border border-green-950 ${isSelectedOnBoard ? 'ring-4 ring-amber-300' : ''}`}
                 onClick={() => !isPlaced && (isClickablePlacement || isValidMove) ? onCellClick(r, c) : undefined}
               >
                 {isPlaced ? (
