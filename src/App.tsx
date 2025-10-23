@@ -58,8 +58,7 @@ const App: React.FC = () => {
   };
 
   return (
-    // CHANGE 1: Main container uses a dark stone/wood background color
-    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4 bg-amber-800/90 border-8 border-amber-900 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.5)]"> 
+    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4 bg-amber-800/90 border-4 border-amber-900 shadow-[0_4px_20px_rgba(0,0,0,0.5)]"> 
       <HowToPlayModal 
         isOpen={isHowToPlayOpen}
         onClose={handleCloseHowToPlayModal}
@@ -76,8 +75,8 @@ const App: React.FC = () => {
       
       {/* CHANGE 2: Updated Header classes for a dark, framed look with subtle transparency */}
       <header className="w-full flex flex-col sm:flex-row border-amber-900 border-3 rounded-xl justify-between items-center text-amber-300 p-3 shadow-[0_6px_12px_rgba(0,0,0,0.4)] bg-amber-700/80">
-        <div className="flex items-center gap-6 w-full sm:w-auto">
-          <h1 className="text-4xl font-extrabold text-stone-100 font-serif p-2 tracking-widest text-shadow-lg">JD 66</h1>
+        <div className="flex items-center gap-4 w-full sm:w-auto">
+          <h2 className="text-4xl font-extrabold text-stone-100 font-serif p-2 tracking-widest text-shadow-lg">JD 66</h2>
           <div className="flex items-center space-x-4 border-l-2 border-r-2 border-stone-900 px-6">
             <div className="text-center">
               <div className="text-sm text-amber-300 font-serif uppercase tracking-widest">High Score</div>
@@ -110,7 +109,6 @@ const App: React.FC = () => {
           <button
             onClick={() => setIsHowToPlayOpen(true)}
             aria-label="How to play"
-            // CHANGE 4: Button Style update for a chunky, wooden/game piece look
             className="flex items-center gap-2 py-2 px-4 rounded-xl shadow-lg transition-all text-stone-100 bg-amber-700 hover:bg-amber-600 border-b-4 border-amber-900 font-serif font-bold active:border-b-2 active:translate-y-0.5"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -153,7 +151,7 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer className="w-full flex flex-col items-center space-y-2 p-2 bg-amber-900/80 border-3 border-amber-950 rounded-xl shadow-[inset_0_4px_8px_rgba(0,0,0,0.3)]">
+      <footer className="w-full flex flex-col items-center space-y-2 p-2 bg-amber-700/80 border-3 border-amber-950 rounded-xl shadow-[inset_0_4px_8px_rgba(0,0,0,0.3)]">
         {/* CHANGE 7: Message color update */}
         <div className="min-h-10 text-center font-semibold text-lg text-amber-300 font-serif transition-opacity flex items-center justify-center">
           {message}
