@@ -34,19 +34,19 @@ const Tile: React.FC<TileProps> = ({
   const colorClass = COLOR_CLASSES[tile.color];
   const shapeIcon = SHAPE_ICONS[tile.shape];
   
-  // FIXED: Using a pale yellow/amber base (like natural wood) with a dark border 
-  // to ensure the shape colors are the focal point.
-  const woodenBaseClasses = 'bg-yellow-100 border-2 border-yellow-900 shadow-md';
-  const interactionClasses = onClick ? 'cursor-pointer hover:shadow-xl active:scale-[0.98] transition-all duration-100 ease-out' : '';
+  // FIX: Reverted to using your color classes for BG/Border, but adding
+  // a strong inner shadow to mimic the depth/gloss of a wooden block.
+  const styledBaseClasses = `border-4 shadow-xl shadow-black/50 ${colorClass.bg} ${colorClass.border}`;
+
+  const interactionClasses = onClick ? 'cursor-pointer hover:scale-105 active:scale-[0.98] transition-all duration-100 ease-out' : '';
     
-  // Ring classes are based on your provided logic
+  // Ring classes
   const selectedClasses = isSelected ? 'ring-4 ring-offset-2 ring-cyan-400 dark:ring-offset-gray-800' : '';
   const discardClasses = isDiscardTarget ? 'ring-4 ring-offset-2 ring-red-500 dark:ring-offset-gray-800 animate-pulse' : '';
   const ghostClasses = isGhost ? 'opacity-50' : '';
   
-  // Replaced the original generic classes with the custom wooden/interaction classes
   const combinedClasses = [
-    woodenBaseClasses, 
+    styledBaseClasses, 
     selectedClasses, 
     discardClasses, 
     ghostClasses, 
@@ -55,11 +55,10 @@ const Tile: React.FC<TileProps> = ({
 
   return (
     <div 
-      // Merged classes to achieve the new wooden style
+      // This will now apply the vibrant color (e.g., bg-red-500) and the new depth styles
       className={`flex items-center justify-center rounded-lg ${sizes.container} ${combinedClasses}`}
       onClick={onClick || undefined}
     >
-      {/* The colorClass.text applies the vibrant color to the shape icon */}
       <div className={`flex items-center justify-center ${sizes.icon} ${colorClass.text}`}>
         {shapeIcon}
       </div>
