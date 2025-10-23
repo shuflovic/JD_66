@@ -19,9 +19,6 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
   isBoardTileSelected,
   onMoveToHand,
 }) => {
-  // NOTE: gridClass and TILE_SIZE_MAP are defined but not used here,
-  // as the size is controlled by the outer div and the Tile component itself.
-  // Keeping them here to match the provided code structure.
   const gridClass: Record<number, string> = {
     5: "grid-cols-5",
     6: "grid-cols-6",
@@ -37,8 +34,8 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-    // Outer container styled to look like a dark wooden tray
-    <div className="p-4 bg-amber-950 rounded-xl shadow-[inset_0_2px_6px_rgba(0,0,0,0.4)] border-4 border-amber-900">
+
+    <div className="p-3 bg-amber-900/80 rounded-xl shadow-[inset_0_4px_8px_rgba(0,0,0,0.3)] border-4 border-amber-950">
 
       {/* Tile Container: uses flex for cleaner wrapping/spacing */}
       <div className="flex flex-wrap justify-center gap-3 md:gap-4 p-2">
