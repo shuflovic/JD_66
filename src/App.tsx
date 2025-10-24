@@ -79,18 +79,22 @@ const App: React.FC = () => {
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">JD66</h1>
 
           <div className="flex items-center space-x-4 border-l border-gray-300 dark:border-gray-600 pl-6">
-              <div className="text-center">
+              
+            <div className="text-center">
                   <div className="text-sm text-gray-500 dark:text-gray-400">High Score</div>
                   <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{highScores[gridSize] ?? 0}</div>
               </div>
+            
               <div className="text-center">
                   <div className="text-sm text-gray-500 dark:text-gray-400">Score</div>
                   <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{score}</div>
               </div>
+            
               <div className="text-center">
                   <div className="text-sm text-gray-500 dark:text-gray-400">Deck</div>
                   <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{deck.length}</div>
               </div>
+            
           <button
             onClick={handleUndo}
             disabled={history.length === 0 || gameState !== GameState.PLAYING}
@@ -102,6 +106,7 @@ const App: React.FC = () => {
                 </svg>
           </button>
         </div>
+       </div>
       </header>
       
       <div className="w-full flex justify-between items-center gap-4">
