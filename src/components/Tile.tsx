@@ -12,11 +12,6 @@ interface TileProps {
   isDiscardTarget?: boolean;
 }
 
-/**
- * Tile component – renders a single coloured shape.
- * The styling gives a raised, glossy “wooden block” feel while preserving
- * clickability for both the hand and the board.
- */
 const Tile: React.FC<TileProps> = ({
   tile,
   onClick,
@@ -27,10 +22,6 @@ const Tile: React.FC<TileProps> = ({
 }) => {
   if (!tile) return null;
 
-  // -----------------------------------------------------------------
-  // Size mapping – same as the original code, but we expose both
-  // container and inner-icon sizes for a tighter layout.
-  // -----------------------------------------------------------------
   const TILE_SIZE_MAP: Record<
     number,
     { container: string; icon: string }
@@ -41,10 +32,6 @@ const Tile: React.FC<TileProps> = ({
   };
 
   const sizes = TILE_SIZE_MAP[gridSize] ?? TILE_SIZE_MAP[5];
-
-  // -----------------------------------------------------------------
-  // Colour & shape helpers
-  // -----------------------------------------------------------------
   const colorClass = COLOR_CLASSES[tile.color];
   const shapeIcon = SHAPE_ICONS[tile.shape];
 
@@ -64,10 +51,10 @@ const Tile: React.FC<TileProps> = ({
   // State-specific rings / opacity
   // -----------------------------------------------------------------
   const selectedClasses = isSelected
-    ? 'ring-4 ring-offset-2 ring-amber-400'
+    ? 'ring-4 ring-offset-2 ring-cyan-400 dark:ring-offset-gray-800'
     : '';
   const discardClasses = isDiscardTarget
-    ? 'ring-4 ring-offset-2 ring-red-500 animate-pulse'
+    ? 'ring-4 ring-offset-2 ring-red-500 dark:ring-offset-gray-800 animate-pulse'
     : '';
   const ghostClasses = isGhost ? 'opacity-50' : '';
 
@@ -89,7 +76,7 @@ const Tile: React.FC<TileProps> = ({
   // -----------------------------------------------------------------
   return (
     <div
-      className={`flex items-center justify-center rounded-lg ${sizes.container} ${combinedClasses}`}
+      className={`flex items-center justify-center rounded-lg shadow-md border-2 ${sizes.container} ${colorClass.bg} ${colorClass.border} ${selectedClasses} ${discardClasses} ${ghostClasses} ${clickableClasses}`}
       onClick={onClick || undefined}
       // Ensure the element is focusable for keyboard navigation
       tabIndex={onClick ? 0 : undefined}
