@@ -31,14 +31,14 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-    <div className="p-4 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-lg">
+    <div className="p-4 bg-gray-800 rounded-xl shadow-lg">
       {/* Tile Container: uses flex for cleaner wrapping/spacing */}
       <div className="flex justify-center items-center gap-2 md:gap-4 min-h-[88px] md:min-h-[110px]">
         {hand.map((tile, index) => (
           <div
             key={index}
             // Removed fixed size class here as Tile handles it, kept flex layout
-            className="flex items-center justify-center rounded-md transition-transform duration-100 ease-out hover:scale-105"
+            className="flex items-center justify-center rounded-md transition-transform duration-100 ease-out hover:scale-103"
           >
             <Tile
               tile={tile}
