@@ -70,7 +70,7 @@ const Board: React.FC<BoardProps> = ({
               <div
                 key={`${r}-${c}`}
                 // Changed border color to dark green/brown for separation
-                className={`flex gap-1 items-center border-2 border-black justify-center rounded-md transition-colors ${tileSizeClass} ${getCellClasses()}`}
+                className={`flex gap-1 items-center border-2 border-black justify-center rounded-lg transition-colors ${tileSizeClass} ${getCellClasses()}`}
                 onClick={() => !isPlaced && (isClickablePlacement || isValidMove) ? onCellClick(r, c) : undefined}
               >
                 {isPlaced ? (
