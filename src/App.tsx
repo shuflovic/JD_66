@@ -58,7 +58,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4 bg-amber-800/90 border-4 border-amber-900 shadow-[0_4px_20px_rgba(0,0,0,0.5)]"> 
+    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4 bg-gray-100 dark:bg-gray-900"> 
       <HowToPlayModal 
         isOpen={isHowToPlayOpen}
         onClose={handleCloseHowToPlayModal}
@@ -74,9 +74,9 @@ const App: React.FC = () => {
       />
       
       {/* CHANGE 2: Updated Header classes for a dark, framed look with subtle transparency */}
-      <header className="w-full flex flex-col sm:flex-row border-amber-900 border-3 rounded-xl justify-between items-center text-amber-300 p-3 shadow-[0_6px_12px_rgba(0,0,0,0.4)] bg-amber-700/80">
-        <div className="flex items-center gap-4 w-full sm:w-auto">
-          <h2 className="text-4xl font-extrabold text-stone-100 font-serif p-2 tracking-widest text-shadow-lg">JD 66</h2>
+      <header className="w-full flex justify-between items-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-md">
+        <div className="flex items-center gap-6">
+          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">JD66</h1>
           <div className="flex items-center space-x-4 border-l-2 border-r-2 border-stone-900 px-6">
             <div className="text-center">
               <div className="text-sm text-amber-300 font-serif uppercase tracking-widest">High Score</div>
