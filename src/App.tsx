@@ -78,7 +78,7 @@ const App: React.FC = () => {
         <div className="flex items-center gap-6">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">JD66</h1>
 
-          <div className="flex items-center space-x-4 border-l border-gray-300 dark:border-gray-600 pl-6">
+          <div className="flex items-center space-x-4 border-l border-gray-300 dark:border-gray-600 pl-3">
               
             <div className="text-center">
                   <div className="text-sm text-gray-500 dark:text-gray-400">High Score</div>
@@ -99,7 +99,7 @@ const App: React.FC = () => {
             onClick={handleUndo}
             disabled={history.length === 0 || gameState !== GameState.PLAYING}
             aria-label="Undo last move"
-            className="text-gray-500 hover:text-cyan-500 disabled:text-gray-300 dark:text-gray-400 dark:hover:text-cyan-400 dark:disabled:text-gray-600 transition-colors disabled:cursor-not-allowed"
+            className="text-gray-500 border-l border-gray-300 dark:border-gray-600 pl-3 hover:text-cyan-500 disabled:text-gray-300 dark:text-gray-400 dark:hover:text-cyan-400 dark:disabled:text-gray-600 transition-colors disabled:cursor-not-allowed"
             >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -111,29 +111,28 @@ const App: React.FC = () => {
       
       <div className="w-full flex justify-between items-center gap-4">
         {hasSeenTutorial ? (
-          <button
-            onClick={() => setIsHowToPlayOpen(true)}
-            aria-label="How to play"
-            className="flex items-center gap-2 py-2 px-4 rounded-xl shadow-lg transition-all text-stone-100 bg-amber-700 hover:bg-amber-600 border-b-4 border-amber-900 font-serif font-bold active:border-b-2 active:translate-y-0.5"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
-            </svg>
-            <span>How to Play</span>
-          </button>
+            <button
+                onClick={() => setIsHowToPlayOpen(true)}
+                aria-label="How to play"
+                className="flex items-center gap-2 py-2 px-4 rounded-lg shadow-md transition-colors text-white bg-blue-500 hover:bg-blue-600 border border-blue-700"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
+                </svg>
+                <span className="font-semibold">How to Play</span>
+            </button>
         ) : (
-          <div /> 
+            <div /> 
         )}
         <button
-          onClick={() => handleStartGame(gridSize)}
-          aria-label="Start a new game"
-          // CHANGE 5: New Game Button Style update
-          className="flex items-center gap-2 py-2 px-4 rounded-xl shadow-lg transition-all text-stone-100 bg-amber-700 hover:bg-amber-600 border-b-4 border-amber-900 font-serif font-bold active:border-b-2 active:translate-y-0.5"
+            onClick={() => handleStartGame(gridSize)}
+            aria-label="Start a new game"
+            className="flex items-center gap-2 py-2 px-4 rounded-lg shadow-md transition-colors text-white bg-purple-500 hover:bg-purple-500 border border-cyan-700"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 110 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
-          </svg>
-          <span>New Game</span>
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 110 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+            </svg>
+            <span className="font-semibold">New Game</span>
         </button>
       </div>
 
