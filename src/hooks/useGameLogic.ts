@@ -1,3 +1,4 @@
+```tsx
 import { useState, useEffect, useCallback, useMemo, RefObject } from 'react';
 import { GameState, Tile, Board as BoardType, Move } from '../types';
 import { SHAPES, COLORS, INITIAL_HAND_SIZE } from '../constants';
@@ -206,42 +207,53 @@ export const useGameLogic = () => {
         return possibleSpots.filter(cell => isValidPlacement(tileToMove, cell.row, cell.col, tempBoard));
     }
     
-    return adjacentCells.filter(cell => isValidPlacement(selectedTile, cell.row, cell.col, board));
+    return adjacentCells.filter(cell => isValidPlacement(selectedTile, cell.row, col, board));
 
   }, [selectedTile, selectedBoardTile, board, adjacentCells, isValidPlacement, getAdjacentEmptyCells]);
 
   const handleTileSelect = (index: number) => {
-    if (selectedBoardTile && playerHand.length >= INITIAL_HAND_SIZE) {
-        const tileFromBoard = board[selectedBoardTile.row][selectedBoardTile.col];
-        if (!tileFromBoard) return;
+    if (selectedBoardTile) {
+      const tileFromBoard = board[selectedBoardTile.row][selectedBoardTile.col];
+      if (!tileFromBoard) return;
 
-        setHistory(prev => [...prev, { board, playerHand, deck, score }]);
-        
+      setHistory(prev => [...prev, { board, playerHand, deck, score }]);
+
+      const newBoard = board.map(row => [...row]);
+      newBoard[selectedBoardTile.row][selectedBoardTile.col] = null;
+
+      if (playerHand.length >= INITIAL_HAND_SIZE) {
+        // Swap the board tile with the selected hand tile
         const tileToDiscard = playerHand[index];
         const newPlayerHand = [...playerHand];
         newPlayerHand[index] = tileFromBoard;
 
         const newDeck = [...deck, tileToDiscard];
-
-        const newBoard = board.map(row => [...row]);
-        newBoard[selectedBoardTile.row][selectedBoardTile.col] = null;
         
         setBoard(newBoard);
         setPlayerHand(newPlayerHand);
         setDeck(shuffleDeck(newDeck));
         setScore(prev => prev - 1);
-        
-        setSelectedBoardTile(null);
-        setSelectedTileIndex(null);
-        setGameOverDismissed(false);
         setMessage('Tile swapped. Select a tile to place.');
-        return;
+      } else {
+        // Move the board tile to the hand
+        const newPlayerHand = [...playerHand, tileFromBoard];
+        
+        setBoard(newBoard);
+        setPlayerHand(newPlayerHand);
+        setScore(prev => prev - 1);
+        setMessage('Tile moved to hand. Select a tile to place.');
+      }
+
+      setSelectedBoardTile(null);
+      setSelectedTileIndex(null);
+      setGameOverDismissed(false);
+      return;
     }
 
     setSelectedBoardTile(null);
     setSelectedTileIndex(index === selectedTileIndex ? null : index);
     if (index !== selectedTileIndex) {
-        setMessage('Select a valid spot on the board.');
+      setMessage('Select a valid spot on the board.');
     }
   };
 
@@ -249,40 +261,36 @@ export const useGameLogic = () => {
     if (score <= 1) return;
 
     if (selectedBoardTile && selectedBoardTile.row === r && selectedBoardTile.col === c) {
-        setSelectedBoardTile(null);
-        setMessage('Choose a tile.');
-        return;
+      setSelectedBoardTile(null);
+      setMessage('Choose a tile.');
+      return;
     }
     
     if (isRemovalValid(board, r, c)) {
-        setSelectedTileIndex(null);
-        setSelectedBoardTile({row: r, col: c});
-        if (playerHand.length >= INITIAL_HAND_SIZE) {
-            setMessage('Move this tile, or click a hand tile to swap.');
-        } else {
-            setMessage('Move this tile, or return it to your hand.');
-        }
+      setSelectedTileIndex(null);
+      setSelectedBoardTile({row: r, col: c});
+      setMessage('Click a hand tile to swap or move to hand, or select a board spot to move.');
     } else {
-        setMessage('This tile cannot be moved without disconnecting others.');
+      setMessage('This tile cannot be moved without disconnecting others.');
     }
   };
 
   const handleCellClick = (r: number, c: number) => {
     if (!selectedTile || !validMoves.some(m => m.row === r && m.col === c)) {
-        setMessage('Invalid move! No duplicate shape or color in a row or column.');
-        return;
-    };
+      setMessage('Invalid move! No duplicate shape or color in a row or column.');
+      return;
+    }
 
     setHistory(prev => [...prev, { board, playerHand, deck, score }]);
     const newBoard = board.map(row => [...row]);
 
     if (selectedBoardTile) {
-        newBoard[selectedBoardTile.row][selectedBoardTile.col] = null;
-        newBoard[r][c] = selectedTile;
-        setBoard(newBoard);
-        setSelectedBoardTile(null);
-        setMessage('Tile moved!');
-        return;
+      newBoard[selectedBoardTile.row][selectedBoardTile.col] = null;
+      newBoard[r][c] = selectedTile;
+      setBoard(newBoard);
+      setSelectedBoardTile(null);
+      setMessage('Tile moved!');
+      return;
     }
 
     if (selectedTileIndex !== null) {
@@ -302,24 +310,6 @@ export const useGameLogic = () => {
       setSelectedTileIndex(null);
       setMessage('Nice move! Choose your next tile.');
     }
-  };
-  
-  const handleMoveToHand = () => {
-    if (!selectedBoardTile || playerHand.length >= INITIAL_HAND_SIZE) return;
-    const tileToRemove = board[selectedBoardTile.row][selectedBoardTile.col];
-    if (!tileToRemove) return;
-
-    setHistory(prev => [...prev, { board, playerHand, deck, score }]);
-    
-    const newBoard = board.map(row => [...row]);
-    newBoard[selectedBoardTile.row][selectedBoardTile.col] = null;
-    setBoard(newBoard);
-    
-    setPlayerHand(prev => [...prev, tileToRemove]);
-    setMessage('Tile returned to your hand.');
-    setScore(prev => prev - 1);
-    setGameOverDismissed(false);
-    setSelectedBoardTile(null);
   };
 
   const handleUndo = () => {
@@ -466,7 +456,6 @@ export const useGameLogic = () => {
     handleTileSelect,
     handleBoardTileClick,
     handleCellClick,
-    handleMoveToHand,
     handleUndo,
     handleShuffle,
     handleShare,
@@ -476,3 +465,4 @@ export const useGameLogic = () => {
     setShowHints,
   };
 };
+```
