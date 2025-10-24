@@ -35,39 +35,45 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
 
   return (
 
-    <div className="p-4 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-lg">
-      <h2 className="text-xl font-bold text-center mb-4 text-gray-700 dark:text-gray-200">Your Hand</h2>
-      <div className="flex justify-center items-center gap-2 md:gap-4 min-h-[88px] md:min-h-[120px]">
-        {hand.length > 0 ? (
-          hand.map((tile, index) => (
-              <Tile
-                key={tile.id}
-                tile={tile}
-                isSelected={!isSwapMode && index === selectedTileIndex}
-                onClick={() => onTileClick(index)}
-                gridSize={gridSize}
-                isDiscardTarget={isSwapMode}
-              />
-            )
-          )
-        ) : !isBoardTileSelected ? (
-          <p className="text-gray-500 dark:text-gray-400">No tiles left!</p>
-        ) : null}
-        
-        {isBoardTileSelected && !isHandFull && (
-          <div 
-            onClick={onMoveToHand} 
-            className={`flex flex-col items-center justify-center rounded-lg shadow-md border-2 border-dashed border-green-500 text-green-500 ${tileSizeClass} cursor-pointer hover:bg-green-100 dark:hover:bg-green-900/50 transition-colors`}
-            title="Return tile to hand"
-            aria-label="Return selected tile to hand"
+    <div className="shadow-2xl p-2 bg-amber-900 border-6 border-stone-950 rounded-xl">
+      {/* Tile Container: uses flex for cleaner wrapping/spacing */}
+      <div className="flex flex-wrap justify-center gap-3 md:gap-4 p-2">
+        {hand.map((tile, index) => (
+          <div
+            key={index}
+            // Removed fixed size class here as Tile handles it, kept flex layout
+            className="flex items-center justify-center rounded-md transition-transform duration-100 ease-out hover:scale-105"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-            </svg>
-            <span className="text-xs font-semibold mt-1">To Hand</span>
-         </div>
-        )}
+            <Tile
+              tile={tile}
+              gridSize={gridSize}
+              isSelected={selectedTileIndex === index}
+              isGhost={false}
+              onClick={() => onTileClick(index)}
+            />
+          </div>
+        ))}
       </div>
+
+      {isBoardTileSelected && (
+        <button
+          onClick={onMoveToHand}
+          // Button styled for a deep, rich wood/gold effect
+          className="mt-4 w-full 
+                     bg-gradient-to-br from-yellow-700 to-yellow-900 
+                     hover:from-yellow-600 hover:to-yellow-800 
+                     text-yellow-100 
+                     font-sans font-bold py-3 px-6 
+                     rounded-lg 
+                     border-2 border-yellow-950 
+                     shadow-2xl 
+                     transition-all duration-50 
+                     active:scale-[0.98] 
+                     tracking-wider uppercase"
+        >
+          Move to Hand
+        </button>
+      )}
     </div>
   );
 };
