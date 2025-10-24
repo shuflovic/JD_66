@@ -44,8 +44,8 @@ const Board: React.FC<BoardProps> = ({
 
   return (
     // Outer container changed to dark wood background with a pronounced border and shadow
-    <div className="p-4 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-inner">
-      <div className={`grid ${gridColsClass} gap-0`}>
+    <div className="bg-gray-200 dark:bg-gray-800 rounded-xl shadow-inner">
+      <div className={`grid ${gridColsClass} gap-1`}>
         {board.map((row, r) =>
           row.map((tile, c) => {
             const isPlaced = !!tile;
