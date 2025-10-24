@@ -77,7 +77,7 @@ const App: React.FC = () => {
         <div className="flex items-center gap-6">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">JD66</h1>
 
-          <div className="flex items-center space-x-4 border-l border-gray-600 pl-3">
+          <div className="flex items-center space-x-4 border-l border-r border-gray-600 pl-3">
               
             <div className="text-center">
                   <div className="text-sm text-gray-500 dark:text-gray-400">Highest Score</div>
@@ -90,7 +90,7 @@ const App: React.FC = () => {
               </div>
             
               <div className="text-center">
-                  <div className="text-sm border-r border-gray-600 text-gray-500 dark:text-gray-400">Deck</div>
+                  <div className="text-sm  text-gray-500 dark:text-gray-400">Deck</div>
                   <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{deck.length}</div>
               </div>
             
