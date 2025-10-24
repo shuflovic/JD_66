@@ -1,4 +1,4 @@
-```tsx
+
 import { useState, useEffect, useCallback, useMemo, RefObject } from 'react';
 import { GameState, Tile, Board as BoardType, Move } from '../types';
 import { SHAPES, COLORS, INITIAL_HAND_SIZE } from '../constants';
@@ -465,4 +465,3 @@ export const useGameLogic = () => {
     setShowHints,
   };
 };
-```
