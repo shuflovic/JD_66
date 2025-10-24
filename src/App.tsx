@@ -165,8 +165,6 @@ const App: React.FC = () => {
           onTileClick={handleTileSelect} 
           selectedTileIndex={selectedTileIndex}
           gridSize={gridSize}
-          isBoardTileSelected={!!selectedBoardTile}
-          onMoveToHand={handleMoveToHand}
         />
         {/* CHANGE 8: Footer controls container styling (dark frame) */}
         <div className="w-full max-w-lg flex justify-around items-center p-2 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-lg">
