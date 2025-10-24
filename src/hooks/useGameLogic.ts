@@ -26,7 +26,7 @@ export const useGameLogic = () => {
   const [selectedBoardTile, setSelectedBoardTile] = useState<Move | null>(null);
   const [score, setScore] = useState<number>(0);
   const [message, setMessage] = useState<string>('Welcome!');
-  const [showHints, setShowHints] = useState<boolean>(true);
+  const [showHints, setShowHints] = useState<boolean>(false);
   const [canShare, setCanShare] = useState<boolean>(false);
   const [history, setHistory] = useState<any[]>([]);
   const [gameOverDismissed, setGameOverDismissed] = useState<boolean>(false);
