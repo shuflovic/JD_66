@@ -33,7 +33,7 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
   return (
     <div className="p-4 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-lg">
       {/* Tile Container: uses flex for cleaner wrapping/spacing */}
-      <div className="flex justify-center items-center gap-2 md:gap-4 min-h-[88px] md:min-h-[120px]">
+      <div className="flex justify-center items-center gap-2 md:gap-4 min-h-[88px] md:min-h-[110px]">
         {hand.map((tile, index) => (
           <div
             key={index}
