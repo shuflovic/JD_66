@@ -138,7 +138,7 @@ const App: React.FC = () => {
       <main ref={boardRef} className="flex-grow flex items-center justify-center">
         {board.length > 0 && (
           // CHANGE 6: Board outer container - dark, thick frame around the lighter board
-          <div className="shadow-2xl p-2 bg-stone-900 border-4 border-stone-950 rounded-xl">
+          <div className="shadow-2xl p-2 rounded-xl">
             <Board 
               board={board} 
               onCellClick={handleCellClick} 
