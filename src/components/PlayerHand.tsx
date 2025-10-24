@@ -7,8 +7,6 @@ interface PlayerHandProps {
   onTileClick: (index: number) => void;
   selectedTileIndex: number | null;
   gridSize: number;
-  isBoardTileSelected: boolean;
-  onMoveToHand: () => void;
 }
 
 export const PlayerHand: React.FC<PlayerHandProps> = ({
@@ -16,8 +14,6 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
   onTileClick,
   selectedTileIndex,
   gridSize,
-  isBoardTileSelected,
-  onMoveToHand,
 }) => {
   const gridClass: Record<number, string> = {
     5: "grid-cols-5",
@@ -34,7 +30,6 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
   const tileSizeClass = TILE_SIZE_MAP[gridSize] || TILE_SIZE_MAP[5];
 
   return (
-
     <div className="p-4 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-lg">
       {/* Tile Container: uses flex for cleaner wrapping/spacing */}
       <div className="flex justify-center items-center gap-2 md:gap-4 min-h-[88px] md:min-h-[120px]">
@@ -54,26 +49,6 @@ export const PlayerHand: React.FC<PlayerHandProps> = ({
           </div>
         ))}
       </div>
-
-      {isBoardTileSelected && (
-        <button
-          onClick={onMoveToHand}
-          // Button styled for a deep, rich wood/gold effect
-          className="mt-4 w-full 
-                     bg-gradient-to-br from-yellow-700 to-yellow-900 
-                     hover:from-yellow-600 hover:to-yellow-800 
-                     text-yellow-100 
-                     font-sans font-bold py-3 px-6 
-                     rounded-lg 
-                     border-2 border-yellow-950 
-                     shadow-2xl 
-                     transition-all duration-50 
-                     active:scale-[0.98] 
-                     tracking-wider uppercase"
-        >
-          Move to Hand
-        </button>
-      )}
     </div>
   );
 };
