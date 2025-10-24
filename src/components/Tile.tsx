@@ -52,10 +52,10 @@ const Tile: React.FC<TileProps> = ({
   // State-specific rings / opacity
   // -----------------------------------------------------------------
   const selectedClasses = isSelected
-    ? 'ring-4 ring-offset-2 ring-cyan-400 dark:ring-offset-gray-800'
+    ? 'ring-4 rimg-offsset-2 ring-cyan-400 ring-offset-gray-800'
     : '';
   const discardClasses = isDiscardTarget
-    ? 'ring-4 ring-offset-2 ring-red-500 dark:ring-offset-gray-800 animate-pulse'
+    ? 'ring-4 ring-offset-2 ring-red-500 ring-offset-gray-800 animate-pulse'
     : '';
   const ghostClasses = isGhost ? 'opacity-50' : '';
 
