@@ -44,7 +44,7 @@ const Board: React.FC<BoardProps> = ({
 
   return (
     // Outer container changed to dark wood background with a pronounced border and shadow
-    <div className="bg-gray-200 boarder-4 dark:bg-gray-800 rounded-xl shadow-inner">
+    <div className="boarder-4 bg-gray-800 rounded-xl shadow-inner">
       <div className={`grid ${gridColsClass} gap-1`}>
         {board.map((row, r) =>
           row.map((tile, c) => {
@@ -57,10 +57,10 @@ const Board: React.FC<BoardProps> = ({
 
             const getCellClasses = () => {
               // HINT/VALID MOVE: Use a vibrant lime green highlight for hints
-              if (showHints && isValidMove) return 'bg-green-300 dark:bg-green-700 cursor-pointer';
+              if (showHints && isValidMove) return 'bg-green-700 cursor-pointer';
               
               // CLICKABLE PLACEMENT: Use a soft amber highlight for placement zones
-              if (isClickablePlacement) return 'bg-gray-400 dark:bg-gray-600 cursor-pointer hover:bg-gray-500 dark:hover:bg-gray-500';
+              if (isClickablePlacement) return 'bg-gray-600 cursor-pointer hover:bg-gray-500';
   
               // DEFAULT EMPTY CELL: Use alternating dark green/brown shades for an old board look
               return isDarkSquare ? 'gap-1 bg-gray-400 dark:bg-gray-400' : 'bg-gray-400 dark:bg-gray-400';
