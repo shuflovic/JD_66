@@ -169,61 +169,58 @@ const App: React.FC = () => {
           onMoveToHand={handleMoveToHand}
         />
         {/* CHANGE 8: Footer controls container styling (dark frame) */}
-        <div className="w-full max-w-lg flex justify-around items-center p-4 rounded-xl shadow-xl backdrop-blur-sm">
-          <div className="flex items-center gap-2">
-            {/* CHANGE 9: Text color update */}
-            <span className="text-sm font-medium text-amber-300 font-serif hidden sm:inline uppercase tracking-widest">Board Size:</span>
-            {/* CHANGE 10: Board Size button group styling */}
-            <div className="flex items-center bg-stone-900/50 rounded-xl p-1 border border-stone-700">
-              {[5, 6, 7].map(size => (
+        <div className="w-full max-w-lg flex justify-around items-center p-2 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-lg">
+            <div className="flex items-center gap-2">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hidden sm:inline">Board Size:</span>
+                <div className="flex items-center bg-gray-300 dark:bg-gray-700 rounded-lg p-1">
+                    {[5, 6, 7].map(size => (
+                        <button
+                            key={size}
+                            onClick={() => handleSizeChange(size)}
+                            aria-pressed={gridSize === size}
+                            className={`px-3 py-1 text-sm font-bold rounded-md transition-colors ${
+                                gridSize === size
+                                ? 'bg-cyan-500 text-white shadow-md'
+                                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                            }`}
+                        >
+                            {size}x{size}
+                        </button>
+                    ))}
+                </div>
+            </div>
+            <button
+                onClick={handleShuffle}
+                disabled={deck.length < playerHand.length || gameState !== GameState.PLAYING}
+                aria-label="Shuffle hand"
+                className="flex items-center gap-2 p-2 rounded-lg transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-700 disabled:text-gray-400 dark:disabled:text-gray-600 disabled:cursor-not-allowed"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                </svg>
+                <span className="text-sm font-medium hidden sm:inline">Shuffle</span>
+            </button>
+            <div className="flex items-center space-x-2">
+                <span className="text-sm font-medium text-gray-700 dark:text-gray-300" id="show-hints-label">Show Hints</span>
                 <button
-                  key={size}
-                  onClick={() => handleSizeChange(size)}
-                  aria-pressed={gridSize === size}
-                  className={`px-3 py-1 text-sm font-bold font-serif rounded-lg transition-colors ${
-                    gridSize === size
-                      ? 'bg-amber-600 text-stone-50 shadow-md ring-2 ring-amber-400'
-                      : 'text-amber-300 hover:text-stone-100 hover:bg-stone-800/50'
-                  }`}
+                    onClick={() => setShowHints(!showHints)}
+                    type="button"
+                    role="switch"
+                    aria-checked={showHints}
+                    aria-labelledby="show-hints-label"
+                    className={`${
+                        showHints ? 'bg-cyan-500' : 'bg-gray-400'
+                    } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800`}
                 >
-                  {size}x{size}
+                    <span
+                        className={`${
+                            showHints ? 'translate-x-6' : 'translate-x-1'
+                        } inline-block h-4 w-4 transform rounded-full bg-white transition-transform`}
+                    />
                 </button>
-              ))}
             </div>
           </div>
-          {/* CHANGE 11: Shuffle button styling */}
-          <button
-            onClick={handleShuffle}
-            disabled={deck.length < playerHand.length || gameState !== GameState.PLAYING}
-            aria-label="Shuffle hand"
-            className="flex items-center gap-2 p-2 rounded-lg transition-colors text-amber-300 hover:text-stone-100 disabled:text-stone-500 disabled:cursor-not-allowed font-serif"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-            </svg>
-            <span className="text-sm font-medium font-serif hidden sm:inline">Shuffle</span>
-          </button>
-          <div className="flex items-center space-x-2">
-            {/* CHANGE 12: Hints toggle styling */}
-            <span className="text-sm font-medium text-amber-300 font-serif uppercase tracking-widest" id="show-hints-label">Hints</span>
-            <button
-              onClick={() => setShowHints(!showHints)}
-              type="button"
-              role="switch"
-              aria-checked={showHints}
-              aria-labelledby="show-hints-label"
-              className={`${
-                showHints ? 'bg-green-600' : 'bg-stone-600'
-              } relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2 border-2 border-stone-800`}
-            >
-              <span
-                className={`${
-                  showHints ? 'translate-x-6' : 'translate-x-1'
-                } inline-block h-4 w-4 transform rounded-full bg-stone-100 transition-transform`}
-              />
-            </button>
-          </div>
-        </div>
+
       </footer>
     </div>
   );
