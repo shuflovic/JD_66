@@ -63,7 +63,7 @@ const Board: React.FC<BoardProps> = ({
   
               
               // DEFAULT EMPTY CELL: Use alternating dark green/brown shades for an old board look
-              return isDarkSquare ? ''bg-gray-300 dark:bg-gray-700'' : ''bg-gray-300 dark:bg-gray-700'';
+              return isDarkSquare ? 'bg-gray-300 dark:bg-gray-700' : 'bg-gray-300 dark:bg-gray-700';
             };
 
             return (
