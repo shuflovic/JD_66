@@ -207,7 +207,7 @@ export const useGameLogic = () => {
         return possibleSpots.filter(cell => isValidPlacement(tileToMove, cell.row, cell.col, tempBoard));
     }
     
-    return adjacentCells.filter(cell => isValidPlacement(selectedTile, cell.row, col, board));
+    return adjacentCells.filter(cell => isValidPlacement(selectedTile, cell.row, cell.col, board));
 
   }, [selectedTile, selectedBoardTile, board, adjacentCells, isValidPlacement, getAdjacentEmptyCells]);
 
