@@ -155,9 +155,9 @@ const App: React.FC = () => {
         )}
       </main>
 
-      <footer className="w-full flex flex-col items-center space-y-2 p-2">
+      <footer className="w-full flex flex-col items-center space-y-2">
         {/* CHANGE 7: Message color update */}
-        <div className="min-h-10 text-center font-semibold text-lg text-amber-200 font-serif transition-opacity flex items-center justify-center">
+        <div className="h-10 text-center font-semibold text-lg text-cyan-600 dark:text-cyan-400 transition-opacity flex items-center justify-center">
           {message}
         </div>
         <PlayerHand 
