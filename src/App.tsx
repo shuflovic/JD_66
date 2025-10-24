@@ -80,18 +80,18 @@ const App: React.FC = () => {
           <div className="flex items-center space-x-4 border-l border-r border-gray-600 pl-3 pr-3">
               
             <div className="text-center">
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Highest Score</div>
-                  <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{highScores[gridSize] ?? 0}</div>
+                  <div className="text-sm text-gray-400">Highest Score</div>
+                  <div className="text-2xl font-bold text-gray-200">{highScores[gridSize] ?? 0}</div>
               </div>
             
               <div className="text-center">
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Score</div>
-                  <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{score}</div>
+                  <div className="text-sm text-gray-400">Score</div>
+                  <div className="text-2xl font-bold text-gray-200">{score}</div>
               </div>
             
               <div className="text-center">
-                  <div className="text-sm  text-gray-500 dark:text-gray-400">Deck</div>
-                  <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{deck.length}</div>
+                  <div className="text-sm  text-gray-400">Deck</div>
+                  <div className="text-2xl font-bold text-gray-200">{deck.length}</div>
               </div>
             </div>
           
@@ -139,7 +139,7 @@ const App: React.FC = () => {
       <main ref={boardRef} className="flex-grow flex items-center justify-center">
         {board.length > 0 && (
           
-          <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-xl">
+          <div className="p-6 bg-gray-800 rounded-xl">
             <Board 
               board={board} 
               onCellClick={handleCellClick} 
@@ -157,7 +157,7 @@ const App: React.FC = () => {
 
       <footer className="w-full flex flex-col items-center space-y-2">
         {/* CHANGE 7: Message color update */}
-        <div className="h-10 text-center font-semibold text-lg text-cyan-600 dark:text-cyan-400 transition-opacity flex items-center justify-center">
+        <div className="h-10 text-center font-semibold text-lg text-cyan-400 transition-opacity flex items-center justify-center">
           {message}
         </div>
         <PlayerHand 
@@ -167,10 +167,10 @@ const App: React.FC = () => {
           gridSize={gridSize}
         />
         {/* CHANGE 8: Footer controls container styling (dark frame) */}
-        <div className="w-full max-w-lg flex justify-around items-center p-2 bg-gray-200 dark:bg-gray-800 rounded-xl shadow-lg">
+        <div className="w-full max-w-lg flex justify-around items-center p-2 bg-gray-800 rounded-xl shadow-lg">
             <div className="flex items-center gap-2">
                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300 hidden sm:inline">Board Size:</span>
-                <div className="flex items-center bg-gray-300 dark:bg-gray-700 rounded-lg p-1">
+                <div className="flex items-center bg-gray-700 rounded-lg p-1">
                     {[5, 6, 7].map(size => (
                         <button
                             key={size}
@@ -179,7 +179,7 @@ const App: React.FC = () => {
                             className={`px-3 py-1 text-sm font-bold rounded-md transition-colors ${
                                 gridSize === size
                                 ? 'bg-cyan-500 text-white shadow-md'
-                                : 'text-gray-600 dark:text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
+                                : 'text-gray-300 hover:bg-gray-400 dark:hover:bg-gray-600'
                             }`}
                         >
                             {size}x{size}
@@ -199,7 +199,7 @@ const App: React.FC = () => {
                 <span className="text-sm font-medium hidden sm:inline">Shuffle</span>
             </button>
             <div className="flex items-center space-x-2">
-                <span className="text-sm font-medium text-gray-700 dark:text-gray-300" id="show-hints-label">Show Hints</span>
+                <span className="text-sm font-medium text-gray-300" id="show-hints-label">Show Hints</span>
                 <button
                     onClick={() => setShowHints(!showHints)}
                     type="button"
