@@ -57,7 +57,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4 bg-gray-100 dark:bg-gray-900"> 
+    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4 bg-gray-900"> 
       <HowToPlayModal 
         isOpen={isHowToPlayOpen}
         onClose={handleCloseHowToPlayModal}
@@ -73,14 +73,14 @@ const App: React.FC = () => {
       />
       
       {/* CHANGE 2: Updated Header classes for a dark, framed look with subtle transparency */}
-      <header className="w-full flex justify-between items-center p-4 bg-white dark:bg-gray-800 rounded-xl shadow-md">
+      <header className="w-full flex justify-between items-center p-4 bg-gray-800 rounded-xl shadow-md">
         <div className="flex items-center gap-6">
           <h1 className="text-3xl font-bold text-gray-800 dark:text-white">JD66</h1>
 
-          <div className="flex items-center space-x-4 border-l border-gray-300 dark:border-gray-600 pl-3">
+          <div className="flex items-center space-x-4 border-l border-gray-600 pl-3">
               
             <div className="text-center">
-                  <div className="text-sm text-gray-500 dark:text-gray-400">High Score</div>
+                  <div className="text-sm text-gray-500 dark:text-gray-400">Highest Score</div>
                   <div className="text-2xl font-bold text-gray-700 dark:text-gray-200">{highScores[gridSize] ?? 0}</div>
               </div>
             
@@ -98,7 +98,7 @@ const App: React.FC = () => {
               onClick={handleUndo}
               disabled={history.length === 0 || gameState !== GameState.PLAYING}
               aria-label="Undo last move"
-              className="text-gray-500 border-l border-gray-300 dark:border-gray-600 pl-3 hover:text-cyan-500 disabled:text-gray-300 dark:text-gray-400 dark:hover:text-cyan-400 dark:disabled:text-gray-600 transition-colors disabled:cursor-not-allowed"
+              className="text-gray-500 border-l border-gray-600 pl-3 hover:text-cyan-500 disabled:text-gray-300 dark:text-gray-400 dark:hover:text-cyan-400 dark:disabled:text-gray-600 transition-colors disabled:cursor-not-allowed"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
