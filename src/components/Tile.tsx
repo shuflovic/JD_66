@@ -39,6 +39,7 @@ const Tile: React.FC<TileProps> = ({
   // Base styling – colour background, border, and a subtle inner shadow
   // -----------------------------------------------------------------
   const baseClasses = `border-2 ${colorClass.bg} ${colorClass.border} shadow-inner shadow-black/30`;
+  const clickableClasses = onClick ? 'cursor-pointer hover:scale-105 transition-transform' : '';
 
   // -----------------------------------------------------------------
   // Interaction helpers
