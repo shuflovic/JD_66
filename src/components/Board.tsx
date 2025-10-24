@@ -1,3 +1,4 @@
+
 import React from 'react';
 import Tile from './Tile';
 import { Board as BoardType, Tile as TileType, Move } from '../types';
@@ -61,16 +62,15 @@ const Board: React.FC<BoardProps> = ({
               // CLICKABLE PLACEMENT: Use a soft amber highlight for placement zones
               if (isClickablePlacement) return 'bg-gray-400 dark:bg-gray-600 cursor-pointer hover:bg-gray-500 dark:hover:bg-gray-500';
   
-              
               // DEFAULT EMPTY CELL: Use alternating dark green/brown shades for an old board look
-              return isDarkSquare ? 'gap-1 bg-gray-300 dark:bg-gray-700' : 'bg-gray-300 dark:bg-gray-700';
+              return isDarkSquare ? 'gap-1 bg-gray-400 dark:bg-gray-600' : 'bg-gray-300 dark:bg-gray-700';
             };
 
             return (
               <div
                 key={`${r}-${c}`}
                 // Changed border color to dark green/brown for separation
-                className={`flex gap-1 items-center boarder-2 boarder-black justify-center rounded-md transition-colors ${tileSizeClass} ${getCellClasses()}`}
+                className={`flex gap-1 items-center border-2 border-black justify-center rounded-md transition-colors ${tileSizeClass} ${getCellClasses()}`}
                 onClick={() => !isPlaced && (isClickablePlacement || isValidMove) ? onCellClick(r, c) : undefined}
               >
                 {isPlaced ? (
