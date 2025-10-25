@@ -63,7 +63,7 @@ const Board: React.FC<BoardProps> = ({
               if (isClickablePlacement) return 'bg-gray-600 cursor-pointer hover:bg-gray-500';
   
               // DEFAULT EMPTY CELL: Use alternating dark green/brown shades for an old board look
-              return isDarkSquare ? 'gap-1 bg-gray-600' : 'bg-gray-600';
+              return isDarkSquare ? 'gap-1 bg-gray-700' : 'bg-gray-700';
             };
 
             return (
