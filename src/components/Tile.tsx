@@ -1,4 +1,4 @@
-// src/components/Tile.tsx
+
 import React from 'react';
 import { SHAPE_ICONS, COLOR_CLASSES } from '../constants';
 import { Tile as TileType } from '../types';
@@ -35,22 +35,13 @@ const Tile: React.FC<TileProps> = ({
   const colorClass = COLOR_CLASSES[tile.color];
   const shapeIcon = SHAPE_ICONS[tile.shape];
 
-  // -----------------------------------------------------------------
-  // Base styling – colour background, border, and a subtle inner shadow
-  // -----------------------------------------------------------------
   const baseClasses = `border-2 ${colorClass.bg} ${colorClass.border} shadow-inner shadow-black/30`;
   const clickableClasses = onClick ? 'cursor-pointer hover:scale-105 transition-transform' : '';
 
-  // -----------------------------------------------------------------
-  // Interaction helpers
-  // -----------------------------------------------------------------
   const interactionClasses = onClick
     ? 'cursor-pointer hover:scale-105 active:scale-98 transition-transform duration-100'
     : '';
 
-  // -----------------------------------------------------------------
-  // State-specific rings / opacity
-  // -----------------------------------------------------------------
   const selectedClasses = isSelected
     ? 'ring-4 rimg-offsset-2 ring-cyan-400 ring-offset-gray-800'
     : '';
@@ -59,9 +50,6 @@ const Tile: React.FC<TileProps> = ({
     : '';
   const ghostClasses = isGhost ? 'opacity-50' : '';
 
-  // -----------------------------------------------------------------
-  // Combine everything
-  // -----------------------------------------------------------------
   const combinedClasses = [
     baseClasses,
     selectedClasses,
@@ -72,9 +60,6 @@ const Tile: React.FC<TileProps> = ({
     .filter(Boolean)
     .join(' ');
 
-  // -----------------------------------------------------------------
-  // Render
-  // -----------------------------------------------------------------
   return (
     <div
       className={`flex items-center justify-center rounded-lg shadow-md border-2 ${sizes.container} ${colorClass.bg} ${colorClass.border} ${selectedClasses} ${discardClasses} ${ghostClasses} ${clickableClasses}`}
