@@ -369,9 +369,9 @@ export const useGameLogic = () => {
         ctx.textAlign = 'center';
         ctx.font = 'bold 96px sans-serif';
         ctx.fillStyle = 'white';
-        ctx.fillText(`Town ${gridSize}x${gridSize}`, finalCanvas.width / 2, 100);
+        ctx.fillText(`JD66 ${gridSize}x${gridSize}`, finalCanvas.width / 2, 100);
         
-        ctx.font = '66px sans-serif';
+        ctx.font = '52px sans-serif';
         ctx.fillText(`I scored ${currentScore}, can you beat me?`, finalCanvas.width / 2, 190);
 
         ctx.drawImage(boardCanvas, canvasPadding / 2, headerHeight);
@@ -381,11 +381,11 @@ export const useGameLogic = () => {
                 setMessage('Error creating image.');
                 return;
             }
-            const file = new File([blob], `town${gridSize}x${gridSize}-score.png`, { type: 'image/png' });
+            const file = new File([blob], `JD66 ${gridSize}x${gridSize}-score.png`, { type: 'image/png' });
             
             const shareData = {
                 title: `Town ${gridSize}x${gridSize} Score`,
-                text: `I scored ${currentScore} in Town ${gridSize}x${gridSize}! Can you beat me?`,
+                text: `I scored ${currentScore} in JD66 ${gridSize}x${gridSize}! Can you beat me?`,
                 files: [file],
             };
             
