@@ -74,8 +74,9 @@ const App: React.FC = () => {
       
       {/* CHANGE 2: Updated Header classes for a dark, framed look with subtle transparency */}
       <header className="w-full flex justify-between items-center p-4 bg-gray-800 rounded-xl shadow-md">
+        
         <div className="flex items-center gap-6">
-          <h1 className="text-3xl font-bold text-white">JD66</h1>
+          <h1 className="text-3xl font-bold text-white pr-3" >JD66</h1>
 
           <div className="flex items-center space-x-4 border-l border-r border-gray-600 pl-3 pr-3">
               
@@ -99,7 +100,7 @@ const App: React.FC = () => {
               onClick={handleUndo}
               disabled={history.length === 0 || gameState !== GameState.PLAYING}
               aria-label="Undo last move"
-              className="pl-3 text-gray-400 hover:text-cyan-400 disabled:text-gray-600 transition-colors disabled:cursor-not-allowed"
+              className="text-gray-400 hover:text-cyan-400 disabled:text-gray-600 transition-colors disabled:cursor-not-allowed"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
@@ -107,6 +108,7 @@ const App: React.FC = () => {
             </button>
           
          </div>
+        
       </header>
       
       <div className="w-full flex justify-between items-center gap-4">
