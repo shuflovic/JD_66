@@ -75,10 +75,10 @@ const App: React.FC = () => {
       {/* CHANGE 2: Updated Header classes for a dark, framed look with subtle transparency */}
       <header className="w-full flex justify-between items-center p-4 bg-gray-800 rounded-xl shadow-md">
         
-        <div className="flex items-center pr-6">
+        <div className="flex items-center pr-6 pl-6">
           <h1 className="text-3xl font-bold text-white" >JD66</h1>
 
-          <div className="flex items-center space-x-4 border-l border-r border-gray-600 pl-6 pr-6">
+          <div className="w-full flex justify-between items-center border-l border-r border-gray-600 pr-6 pl-6">
               
             <div className="text-center">
                   <div className="text-sm text-gray-400">Highest Score</div>
