@@ -75,7 +75,7 @@ const App: React.FC = () => {
       {/* CHANGE 2: Updated Header classes for a dark, framed look with subtle transparency */}
       <header className="w-full flex justify-between items-center p-4 bg-gray-800 rounded-xl shadow-md">
         
-        <div className="text-3xl font-bold text-white pr-6">JD66</div>
+        <div className="text-3xl font-bold text-white pr-3">JD66</div>
 
         <div className="w-full flex justify-between items-center border-l border-r border-gray-600">
               
