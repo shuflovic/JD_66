@@ -1,6 +1,6 @@
 /* public/service-worker.js */
-const CACHE = 'jd66-v7';
-const BASE = '/JD_66';                     // <-- important
+const CACHE = 'jd66-v8';
+const BASE = '/JD_66';
 
 const PRECACHE = [
   `${BASE}/`,
@@ -11,9 +11,7 @@ const PRECACHE = [
 ];
 
 self.addEventListener('install', e => {
-  e.waitUntil(
-    caches.open(CACHE).then(c => c.addAll(PRECACHE))
-  );
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(PRECACHE)));
   self.skipWaiting();
 });
 
@@ -28,23 +26,20 @@ self.addEventListener('activate', e => {
 
 self.addEventListener('fetch', e => {
   const url = new URL(e.request.url);
-
-  // ignore cross-origin or non-GET
   if (e.request.method !== 'GET' || url.origin !== self.location.origin) return;
-
-  // only handle requests inside our scope
   if (!url.pathname.startsWith(BASE)) return;
 
   e.respondWith(
     caches.match(e.request).then(cached => {
       if (cached) return cached;
 
-      return fetch(e.request).then(net => {
-        if (net && net.status === 200) {
-          caches.open(CACHE).then(c => c.put(e.request, net.clone()));
+      return fetch(e.request).then(response => {
+        if (response && response.status === 200 && response.type === 'basic') {
+          const clone = response.clone();
+          caches.open(CACHE).then(cache => cache.put(e.request, clone));
         }
-        return net;
-      });
-    }).catch(() => caches.match(`${BASE}/index.html`))
+        return response;
+      }).catch(() => caches.match(`${BASE}/index.html`));
+    })
   );
 });
