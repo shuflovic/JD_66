@@ -1,81 +1,50 @@
-const CACHE_NAME = 'jd66-cache-v6';
-const BASE_PATH = '/JD_66';
+/* public/service-worker.js */
+const CACHE = 'jd66-v7';
+const BASE = '/JD_66';                     // <-- important
 
-// Precache essential files
-const PRECACHE_URLS = [
-  `${BASE_PATH}/`,
-  `${BASE_PATH}/index.html`,
-  `${BASE_PATH}/manifest.json`,
-  `${BASE_PATH}/icons/icon-192.png`,
-  `${BASE_PATH}/icons/icon-512.png`
+const PRECACHE = [
+  `${BASE}/`,
+  `${BASE}/index.html`,
+  `${BASE}/manifest.json`,
+  `${BASE}/icons/icon-192.png`,
+  `${BASE}/icons/icon-512.png`
 ];
 
-// Install: precache
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      return cache.addAll(PRECACHE_URLS);
-    })
+self.addEventListener('install', e => {
+  e.waitUntil(
+    caches.open(CACHE).then(c => c.addAll(PRECACHE))
   );
   self.skipWaiting();
 });
 
-// Activate: clean old caches
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(name => {
-          if (name !== CACHE_NAME) {
-            return caches.delete(name);
-          }
-        })
-      );
-    })
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys().then(names =>
+      Promise.all(names.filter(n => n !== CACHE).map(n => caches.delete(n)))
+    )
   );
   self.clients.claim();
 });
 
-// Fetch: network-first for navigation, cache-first for assets
-self.addEventListener('fetch', event => {
-  const url = new URL(event.request.url);
+self.addEventListener('fetch', e => {
+  const url = new URL(e.request.url);
 
-  // Skip non-GET and cross-origin
-  if (event.request.method !== 'GET' || !url.origin === self.location.origin) {
-    return;
-  }
+  // ignore cross-origin or non-GET
+  if (e.request.method !== 'GET' || url.origin !== self.location.origin) return;
 
-  // Only handle requests in our scope
-  if (!url.pathname.startsWith(BASE_PATH)) {
-    return;
-  }
+  // only handle requests inside our scope
+  if (!url.pathname.startsWith(BASE)) return;
 
-  // Handle navigation (HTML)
-  if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request).catch(() => {
-        return caches.match(`${BASE_PATH}/index.html`);
-      })
-    );
-    return;
-  }
-
-  // For everything else: cache-first, fallback to network
-  event.respondWith(
-    caches.match(event.request).then(cached => {
+  e.respondWith(
+    caches.match(e.request).then(cached => {
       if (cached) return cached;
 
-      return fetch(event.request).then(response => {
-        if (response.status === 200) {
-          caches.open(CACHE_NAME).then(cache => {
-            cache.put(event.request, response.clone());
-          });
+      return fetch(e.request).then(net => {
+        if (net && net.status === 200) {
+          caches.open(CACHE).then(c => c.put(e.request, net.clone()));
         }
-        return response;
+        return net;
       });
-    }).catch(() => {
-      // Optional: fallback asset
-      return caches.match(`${BASE_PATH}/index.html`);
-    })
+    }).catch(() => caches.match(`${BASE}/index.html`))
   );
 });
