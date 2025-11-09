@@ -75,41 +75,38 @@ const App: React.FC = () => {
       {/* CHANGE 2: Updated Header classes for a dark, framed look with subtle transparency */}
       <header className="w-full flex justify-between items-center p-4 bg-gray-800 rounded-xl shadow-md">
         
-        <div className="flex items-center pr-6 pl-6">
-          <div className="text-3xl font-bold text-white pr-6" >JD66</div>
+        <div className="text-3xl font-bold text-white pr-6">JD66</div>
 
-          <div className="w-full flex justify-between items-center border-l border-r border-gray-600 pr-6 pl-6">
+        <div className="w-full flex justify-between items-center border-l border-r border-gray-600">
               
-              <div className="text-center pr-2">
+              <div className="text-center p-2">
                   <div className="text-sm text-gray-400">Highest Score</div>
                   <div className="text-2xl font-bold text-gray-200">{highScores[gridSize] ?? 0}</div>
               </div>
             
-              <div className="text-center pr-2">
+              <div className="text-center p-2">
                   <div className="text-sm text-gray-400">Score</div>
                   <div className="text-2xl font-bold text-gray-200">{score}</div>
               </div>
             
-              <div className="text-center pr-2">
+              <div className="text-center p-2">
                   <div className="text-sm  text-gray-400">Deck</div>
                   <div className="text-2xl font-bold text-gray-200">{deck.length}</div>
               </div>
             
-          </div>
+        </div>
           
-          <button
+        <button
               onClick={handleUndo}
               disabled={history.length === 0 || gameState !== GameState.PLAYING}
               aria-label="Undo last move"
-              className="text-gray-400 hover:text-cyan-400 disabled:text-gray-600 transition-colors disabled:cursor-not-allowed pl-6"
+              className="text-gray-400 hover:text-cyan-400 disabled:text-gray-600 transition-colors disabled:cursor-not-allowed"
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clipRule="evenodd" />
                 </svg>
-          </button>
-          
-        </div>
-        
+        </button>
+    
       </header>
       
       <div className="w-full flex justify-between items-center gap-4">
