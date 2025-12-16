@@ -4,6 +4,7 @@ import { GameState, Tile, Board as BoardType, Move } from '../types';
 import { SHAPES, COLORS, INITIAL_HAND_SIZE } from '../constants';
 import useLocalStorage from './useLocalStorage';
 import html2canvas from 'html2canvas';
+import { playMoveSound } from '../utils/sound';
 
 const shuffleDeck = (deck: Tile[]): Tile[] => {
   const shuffled = [...deck];
@@ -30,6 +31,7 @@ export const useGameLogic = () => {
   const [canShare, setCanShare] = useState<boolean>(false);
   const [history, setHistory] = useState<any[]>([]);
   const [gameOverDismissed, setGameOverDismissed] = useState<boolean>(false);
+  const [isSoundOn, setIsSoundOn] = useLocalStorage('town-sound-enabled', true);
 
   const [highScores, setHighScores] = useLocalStorage<HighScores>('town-highScores', { 5: 0, 6: 0, 7: 0 });
   const [lastScores, setLastScores] = useLocalStorage<HighScores>('town-lastScores', { 5: 0, 6: 0, 7: 0 });
@@ -233,6 +235,7 @@ export const useGameLogic = () => {
         setPlayerHand(newPlayerHand);
         setDeck(shuffleDeck(newDeck));
         setScore(prev => prev - 1);
+        if (isSoundOn) playMoveSound();
         setMessage('Tile swapped. Select a tile to place.');
       } else {
         // Move the board tile to the hand
@@ -241,6 +244,7 @@ export const useGameLogic = () => {
         setBoard(newBoard);
         setPlayerHand(newPlayerHand);
         setScore(prev => prev - 1);
+        if (isSoundOn) playMoveSound();
         setMessage('Tile moved to hand. Select a tile to place.');
       }
 
@@ -289,6 +293,7 @@ export const useGameLogic = () => {
       newBoard[r][c] = selectedTile;
       setBoard(newBoard);
       setSelectedBoardTile(null);
+      if (isSoundOn) playMoveSound();
       setMessage('Tile moved!');
       return;
     }
@@ -308,6 +313,7 @@ export const useGameLogic = () => {
       setPlayerHand(newPlayerHand);
       setDeck(newDeck);
       setSelectedTileIndex(null);
+      if (isSoundOn) playMoveSound();
       setMessage('Nice move! Choose your next tile.');
     }
   };
@@ -323,6 +329,7 @@ export const useGameLogic = () => {
     setGameOverDismissed(false);
     setSelectedTileIndex(null);
     setSelectedBoardTile(null);
+    if (isSoundOn) playMoveSound();
     setMessage('Last move undone.');
   };
 
@@ -369,9 +376,9 @@ export const useGameLogic = () => {
         ctx.textAlign = 'center';
         ctx.font = 'bold 96px sans-serif';
         ctx.fillStyle = 'white';
-        ctx.fillText(`JD66 ${gridSize}x${gridSize}`, finalCanvas.width / 2, 100);
+        ctx.fillText(`Town ${gridSize}x${gridSize}`, finalCanvas.width / 2, 100);
         
-        ctx.font = '52px sans-serif';
+        ctx.font = '66px sans-serif';
         ctx.fillText(`I scored ${currentScore}, can you beat me?`, finalCanvas.width / 2, 190);
 
         ctx.drawImage(boardCanvas, canvasPadding / 2, headerHeight);
@@ -381,11 +388,11 @@ export const useGameLogic = () => {
                 setMessage('Error creating image.');
                 return;
             }
-            const file = new File([blob], `JD66 ${gridSize}x${gridSize}-score.png`, { type: 'image/png' });
+            const file = new File([blob], `town${gridSize}x${gridSize}-score.png`, { type: 'image/png' });
             
             const shareData = {
                 title: `Town ${gridSize}x${gridSize} Score`,
-                text: `I scored ${currentScore} in JD66 ${gridSize}x${gridSize}! Can you beat me?`,
+                text: `I scored ${currentScore} in Town ${gridSize}x${gridSize}! Can you beat me?`,
                 files: [file],
             };
             
@@ -452,6 +459,8 @@ export const useGameLogic = () => {
     selectedTile,
     adjacentCells,
     validMoves,
+    isSoundOn,
+    toggleSound: () => setIsSoundOn(prev => !prev),
     handleStartGame,
     handleTileSelect,
     handleBoardTileClick,
@@ -465,3 +474,4 @@ export const useGameLogic = () => {
     setShowHints,
   };
 };
+
