@@ -61,7 +61,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-between p-4 space-y-4 bg-gray-900"> 
+    <div className="w-full max-w-xl flex flex-col items-center justify-between p-4 space-y-4 bg-gray-900"> 
       <HowToPlayModal 
         isOpen={isHowToPlayOpen}
         onClose={handleCloseHowToPlayModal}
