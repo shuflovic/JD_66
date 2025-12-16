@@ -1,6 +1,6 @@
 # JD 66 - Digital Edition
 
-This is a digital, single-player adaptation of the tile-laying puzzle game "Town 66". It's a game of logic and spatial reasoning where the goal is to place as many tiles as possible onto the grid while following a simple placement rule.
+This is a digital, single-player adaptation of the tile-laying puzzle game "Town 77". It's a game of logic and spatial reasoning where the goal is to place as many tiles as possible onto the grid while following a simple placement rule.
 
 ## Gameplay
 
