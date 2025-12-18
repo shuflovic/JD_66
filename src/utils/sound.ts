@@ -25,8 +25,8 @@ export const playMoveSound = () => {
 
     // A pleasant "pop" / "thock" sound
     // Frequency sweep from 400Hz down to 50Hz to mimic a physical tile sound
-   // oscillator.type = 'sine';
-    oscillator.type = 'square';
+   oscillator.type = 'sine';
+   // oscillator.type = 'square';
     
     oscillator.frequency.setValueAtTime(400, audioContext.currentTime);
     oscillator.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.15);
