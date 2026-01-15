@@ -391,9 +391,10 @@ export const useGameLogic = () => {
             const file = new File([blob], `town${gridSize}x${gridSize}-score.png`, { type: 'image/png' });
             
             const shareData = {
-                title: `Town ${gridSize}x${gridSize} Score`,
-                text: `I scored ${currentScore} in Town ${gridSize}x${gridSize}! Can you beat me?`,
-                files: [file],
+              title: `Town ${gridSize}x${gridSize} Score`,
+              text: `I scored ${currentScore}! Can you beat me?`,
+              url: 'https://shuflovic.github.io/JD_66/',   // ← add this line
+              files: [file],
             };
             
             if (navigator.canShare && navigator.canShare(shareData)) {
