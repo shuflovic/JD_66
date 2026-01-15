@@ -1,13 +1,17 @@
 /* public/service-worker.js */
-const CACHE = 'jd66-v8';
+const CACHE = 'jd66-v9';
 const BASE = '/JD_66';
 
+
+
 const PRECACHE = [
-  `${BASE}/`,
-  `${BASE}/index.html`,
-  `${BASE}/manifest.json`,
-  `${BASE}/icons/icon-192.png`,
-  `${BASE}/icons/icon-512.png`
+  '/',
+  '/index.html',
+  '/manifest.json',
+  '/icons/icon-192.png',
+  '/icons/icon-512.png',
+  // You should add more important assets if you want better offline experience
+  // (but for quick fix these are usually enough for start)
 ];
 
 self.addEventListener('install', e => {
