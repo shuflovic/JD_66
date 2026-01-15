@@ -378,7 +378,7 @@ export const useGameLogic = () => {
         ctx.fillStyle = 'white';
         ctx.fillText(`Town ${gridSize}x${gridSize}`, finalCanvas.width / 2, 100);
         
-        ctx.font = '66px sans-serif';
+        ctx.font = '54px sans-serif';
         ctx.fillText(`I scored ${currentScore}, can you beat me?`, finalCanvas.width / 2, 190);
 
         ctx.drawImage(boardCanvas, canvasPadding / 2, headerHeight);
