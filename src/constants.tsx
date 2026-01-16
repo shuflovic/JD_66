@@ -5,6 +5,7 @@ export const COLORS = ['red', 'blue', 'green', 'yellow', 'purple', 'orange', 'pi
 
 export const INITIAL_HAND_SIZE = 4;
 
+/*
 export const SHAPE_ICONS: Record<string, React.ReactElement> = {
   square:   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4z"></path></svg>,
   triangle: <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4L3 20h18z"></path></svg>,
@@ -13,6 +14,51 @@ export const SHAPE_ICONS: Record<string, React.ReactElement> = {
   star:     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>,
   diamond:  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L21 12l-9 9-9-9 9-9z"></path></svg>,
   hexagon:  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6L12 2L5 6v12l7 4l7-4V6z"></path></svg>,
+};
+*/
+
+export const SHAPE_ICONS: Record<string, React.ReactElement> = {
+  square: (
+    <svg viewBox="0 0 24 24">
+      <path fill="#ffffff" d="M4 4h16v16H4z" />
+    </svg>
+  ),
+  triangle: (
+    <svg viewBox="0 0 24 24">
+      <path fill="#ffffff" d="M12 4L3 20h18z" />
+    </svg>
+  ),
+  circle: (
+    <svg viewBox="0 0 24 24">
+      <circle fill="#ffffff" cx="12" cy="12" r="9" />
+    </svg>
+  ),
+  cross: (
+    <svg viewBox="0 0 24 24">
+      <path
+        fill="#ffffff"
+        d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+      />
+    </svg>
+  ),
+  star: (
+    <svg viewBox="0 0 24 24">
+      <path
+        fill="#ffffff"
+        d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+      />
+    </svg>
+  ),
+  diamond: (
+    <svg viewBox="0 0 24 24">
+      <path fill="#ffffff" d="M12 3L21 12l-9 9-9-9 9-9z" />
+    </svg>
+  ),
+  hexagon: (
+    <svg viewBox="0 0 24 24">
+      <path fill="#ffffff" d="M19 6L12 2L5 6v12l7 4l7-4V6z" />
+    </svg>
+  ),
 };
 
 export const COLOR_CLASSES: Record<string, { bg: string; text: string; border: string }> = {
