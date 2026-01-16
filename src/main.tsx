@@ -1,53 +1,64 @@
+// main.tsx – Brave/localStorage blocker detection FIRST
+
+// This runs before React imports/hooks
+if (typeof window !== 'undefined') {
+  let canAccessStorage = false;
+  try {
+    const testKey = 'brave-storage-test';
+    window.localStorage.setItem(testKey, 'test');
+    window.localStorage.removeItem(testKey);
+    canAccessStorage = true;
+  } catch (e) {
+    console.warn('localStorage blocked by browser (likely Brave Shields)');
+  }
+
+  if (!canAccessStorage) {
+    // Replace root content immediately – no React needed
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.getElementById('root');
+      if (root) {
+        root.innerHTML = `
+          <div style="
+            padding: 3rem 1rem;
+            text-align: center;
+            font-family: system-ui, sans-serif;
+            color: #e5e7eb;
+            background: #111827;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+          ">
+            <h2 style="font-size: 2rem; margin: 0;">Game can't load properly 😕</h2>
+            <p style="max-width: 500px; margin: 0;">
+              Your browser (likely Brave) is blocking localStorage access.<br>
+              This is required for saving tutorial progress, high scores & sound settings.
+            </p>
+            <p style="max-width: 500px; margin: 0; font-weight: bold;">
+              Quick fix:<br>
+              1. Click the 🦁 lion icon in the address bar<br>
+              2. Set Shields to <strong>Standard</strong> (not Aggressive)<br>
+              3. Or turn Shields down/off for this site<br>
+              4. Hard refresh (Ctrl + Shift + R / Cmd + Shift + R)
+            </p>
+            <p>Thanks & sorry for the trouble! 🛡️</p>
+          </div>
+        `;
+      }
+    });
+    // Stop everything – no more script execution
+    throw new Error('localStorage blocked – halting render');
+  }
+}
+
+// If we reach here → storage works → safe to import & render React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 
-// ← Put the detection here – before rendering anything
-if (typeof window !== 'undefined') {
-  try {
-    // Simple localStorage test
-    window.localStorage.setItem('test-brave-fix', 'test');
-    window.localStorage.removeItem('test-brave-fix');
-  } catch (e) {
-    // If localStorage is blocked → show friendly message instead of blank screen
-    const rootEl = document.getElementById('root');
-    if (rootEl) {
-      rootEl.innerHTML = `
-        <div style="
-          padding: 2rem;
-          text-align: center;
-          font-family: system-ui, sans-serif;
-          color: #fff;
-          background: #111827;
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        ">
-          <h2 style="margin-bottom: 1rem;">Oops! The game can't load properly</h2>
-          <p style="max-width: 500px; margin-bottom: 1.5rem;">
-            It looks like your browser (probably Brave) is blocking localStorage access.
-            This is needed for saving progress, sound settings, and tutorial state.
-          </p>
-          <p style="max-width: 500px; margin-bottom: 1.5rem;">
-            <strong>Quick fix:</strong><br>
-            1. Click the 🦁 lion icon in the address bar<br>
-            2. Set Shields to <strong>Standard</strong> (or turn them down for this site)<br>
-            3. Refresh the page (Ctrl + F5 / Cmd + Shift + R)
-          </p>
-          <p>Thanks for understanding! 🛡️</p>
-        </div>
-      `;
-    }
-    // Stop here – don't render React app
-    // You can also console.warn if you want
-    console.warn('localStorage blocked – showing fallback message');
-  }
-}
-
-// If we reached here → localStorage works → render normal app
 const rootElement = document.getElementById('root');
 if (!rootElement) {
   throw new Error("Could not find root element to mount to");
